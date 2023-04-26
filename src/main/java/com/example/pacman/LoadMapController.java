@@ -35,6 +35,13 @@ public class LoadMapController implements Initializable{
         btn_selectMap.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+
+                FileChooser fil_chooser = new FileChooser();
+
+                FileChooser.ExtensionFilter extFilter =
+                        new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
+                fil_chooser.getExtensionFilters().add(extFilter);
+
                 Node node = (Node) actionEvent.getSource();
                 Stage st = (Stage) node.getScene().getWindow();
                 File file = fil_chooser.showOpenDialog(st);
