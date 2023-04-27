@@ -3,14 +3,10 @@ package com.example.pacman;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.BufferedReader;
@@ -42,7 +38,6 @@ public class LoadMapController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FileChooser fil_chooser = new FileChooser();
 
         btn_selectMap.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -91,6 +86,7 @@ public class LoadMapController implements Initializable{
                         reader.close();
                         cfg.stopReading();
                         Maze maze = cfg.createMaze();
+                        /*
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("running-game.fxml"));
                         Parent root = loader.load();
 
@@ -101,7 +97,8 @@ public class LoadMapController implements Initializable{
                         stage.setTitle("Pacman");
                         stage.setScene(new Scene(root, 320, 240));
                         stage.show();
-
+                        */
+                        Utils.changeScene(actionEvent, "running-game.fxml", "Pac-Man");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
