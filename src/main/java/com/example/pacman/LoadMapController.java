@@ -101,6 +101,8 @@ public class LoadMapController implements Initializable{
                         Utils.changeScene(actionEvent, "running-game.fxml", "Pac-Man");
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } finally {
+                        start_label.setText("Not valid map");
                     }
                 }
             }
