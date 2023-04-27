@@ -11,5 +11,9 @@
 
         <Button text="Select map" fx:id="btn_selectMap"/>
         <Label fx:id="label"/>
+
+        <Button text="Start game" fx:id="btn_startGame"/>
+        <Label fx:id="start_label"/>
+
         <Button text="Back" fx:id="btn_back"/>
 </VBox>

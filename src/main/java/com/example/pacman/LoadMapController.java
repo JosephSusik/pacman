@@ -21,10 +21,16 @@ public class LoadMapController implements Initializable{
     private Button btn_selectMap;
 
     @FXML
+    private Button btn_startGame;
+
+    @FXML
     private Button btn_back;
 
     @FXML
     private Label label;
+
+    @FXML
+    private Label start_label;
 
     public File selectedFile;
 
@@ -49,6 +55,16 @@ public class LoadMapController implements Initializable{
                     selectedFile = file;
                     //label.setText(selectedFile.getAbsolutePath() + " selected");
                     label.setText("File: " + selectedFile.getName());
+                    start_label.setText("");
+                }
+            }
+        });
+
+        btn_startGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (selectedFile == null) {
+                    start_label.setText("No map selected");
                 }
             }
         });
