@@ -6,7 +6,9 @@ public class PacmanObject implements MazeObject {
         D, L, R, U, NONE
     };
     private int row, col;
-    public Direction direction;
+    private int orow, ocol;
+    public Direction next_direction;
+    public Direction current_direction;
     public PathField field;
     public int lives;
 
@@ -17,7 +19,10 @@ public class PacmanObject implements MazeObject {
                         int col) {
         this.row = row;
         this.col = col;
-        this.direction = Direction.NONE;
+        this.orow = row;
+        this.ocol = col;
+        this.next_direction = Direction.NONE;
+        this.current_direction = Direction.NONE;
         this.lives = 3;
     }
     /**
@@ -33,7 +38,7 @@ public class PacmanObject implements MazeObject {
      * Funkce se stará o přemístění pacmana na políčko
      */
     public boolean move(Field.Direction dir) {
-        if(canMove(dir)){
+        if(canMove(dir)) {
             int nextcol = dir.getColDelta() + this.col;
             int nextrow = dir.getRowDelta() + this.row;
             this.field.objectOnField = null;
@@ -44,5 +49,19 @@ public class PacmanObject implements MazeObject {
             return true;
         }
         return false;
+    }
+
+    public void reset() {
+        this.field.objectOnField = null;
+        this.row = orow;
+        this.col = ocol;
+        this.field.maze.getField(this.row, this.col).put(this);
+        this.field = (PathField) this.field.maze.getField(this.row, this.col);
+        this.current_direction = Direction.NONE;
+        this.next_direction = Direction.NONE;
+    }
+
+    public Field getField() {
+        return field;
     }
 }
