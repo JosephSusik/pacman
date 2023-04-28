@@ -3,10 +3,10 @@ package com.example.pacman;
 public interface Field {
 
     static enum Direction {
-        D(-1, 0),
+        D(1, 0),
         L(0, -1),
         R(0, 1),
-        U(1, 0);
+        U(-1, 0);
 
         private final int rowDelta;
         private final int colDelta;

@@ -11,6 +11,8 @@ public class MazeConfigure {
     private boolean reading = false;
     private boolean fail = false;
     private Field[][] fields;
+    private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
+    private PacmanObject pacman;
 
     /**
      * Konstruktor
@@ -38,7 +40,7 @@ public class MazeConfigure {
         this.actual_rows++;
         // kontrola korektnosti vstupního řetězce
         if((this.actual_rows > this.rows-2)
-                || (!line.matches("^[X.S]+$"))
+                || (!line.matches("^[X.SG]+$"))
                 || (line.length() != this.cols-2)
                 || (!this.reading)) {
             this.fail = true;
@@ -63,7 +65,20 @@ public class MazeConfigure {
                 PacmanObject pacman = new PacmanObject(this.actual_rows, counter+1);
                 pacman.field = pathField;
                 pathField.objectOnField = pacman;
+                if (this.pacman != null) {
+                    return false;
+                }
+                this.pacman = pacman;
                 this.fields[this.actual_rows][counter+1] = pathField;
+            } // zde se jedná o cestu, vytvoří se Pathfield a vloží se do pole bludiště a vytvoří se objekt duch
+            // nově vytvořený objekt se položí na políčko
+            else if (ltr.equals('G')) {
+                PathField pathField = new PathField(this.actual_rows, counter+1);
+                GhostObject ghost = new GhostObject(this.actual_rows, counter+1);
+                ghost.field = pathField;
+                pathField.objectOnField = ghost;
+                this.fields[this.actual_rows][counter+1] = pathField;
+                PoleGhostu.add(ghost);
             } else {
                 return false;
             }
@@ -112,6 +127,14 @@ public class MazeConfigure {
             public Field getField(int row,
                                   int col){
                 return MazeConfigure.this.fields[row][col];
+            }
+            public PacmanObject getPacman() {
+                return MazeConfigure.this.pacman;
+            }
+            public List<MazeObject> getGhosts() {
+                List<MazeObject> cloned_list
+                        = new ArrayList<MazeObject>(PoleGhostu);
+                return cloned_list;
             }
         };
         for (int r = 0; r < this.rows; r++){

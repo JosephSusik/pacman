@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,6 +29,9 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
     private GameController gameController;
 
 
+    private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
+
+    private PacmanObject pacman;
 
     private Maze maze;
 
@@ -34,6 +39,8 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
 
     public void giveMaze(Maze maze) {
         this.maze = maze;
+        this.pacman = maze.getPacman();
+        this.PoleGhostu = maze.getGhosts();
     }
 
 
@@ -75,13 +82,29 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
         Image pacmanDownImage =  new Image(getClass().getResourceAsStream("pacman-down.gif"));
         Image pacmanRightImage =  new Image(getClass().getResourceAsStream("pacman-right.gif"));
         Image pacmanLeftImage =  new Image(getClass().getResourceAsStream("pacman-left.gif"));
+        Image pacmanGhostImage =  new Image(getClass().getResourceAsStream("ghost-yellow.gif"));
+        Image pathImage =  new Image(getClass().getResourceAsStream("path.png"));
         for (int row = 0; row < this.maze.numRows(); row++) {
             for (int col = 0; col < this.maze.numCols(); col++) {
                 Field cell = maze.getField(row, col);
                 if (cell instanceof WallField) {
                     this.cellViews[row][col].setImage(wallImage);
                 } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof PacmanObject) {
-                    this.cellViews[row][col].setImage(pacmanRightImage);
+                    if (pacman.direction == PacmanObject.Direction.L) {
+                        this.cellViews[row][col].setImage(pacmanLeftImage);
+                    } else if (pacman.direction == PacmanObject.Direction.R) {
+                        this.cellViews[row][col].setImage(pacmanRightImage);
+                    } else if (pacman.direction == PacmanObject.Direction.D) {
+                        this.cellViews[row][col].setImage(pacmanDownImage);
+                    } else if (pacman.direction == PacmanObject.Direction.U) {
+                        this.cellViews[row][col].setImage(pacmanUpImage);
+                    } else {
+                        this.cellViews[row][col].setImage(pacmanRightImage);
+                    }
+                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof GhostObject) {
+                    this.cellViews[row][col].setImage(pacmanGhostImage);
+                } else if (cell instanceof PathField && cell.isEmpty()) {
+                    this.cellViews[row][col].setImage(null);
                 }
             }
         }
@@ -91,13 +114,18 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();
         if (code == KeyCode.LEFT) {
-            System.out.print(this.maze.numRows());
+            gameController.pacman.direction = PacmanObject.Direction.L;
+            gameController.pacman.move(Field.Direction.L);
         } else if (code == KeyCode.RIGHT) {
-            System.out.print(this.maze.numCols());
+            gameController.pacman.direction = PacmanObject.Direction.R;
+            gameController.pacman.move(Field.Direction.R);
         } else if (code == KeyCode.UP) {
-            System.out.print(this.maze.numCols());
+            gameController.pacman.direction = PacmanObject.Direction.U;
+            gameController.pacman.move(Field.Direction.U);
         } else if (code == KeyCode.DOWN) {
-            System.out.print(this.maze.numCols());
+            gameController.pacman.direction = PacmanObject.Direction.D;
+            gameController.pacman.move(Field.Direction.D);
         }
+        gameController.update_map();
     }
 }

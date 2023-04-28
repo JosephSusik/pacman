@@ -1,27 +1,29 @@
 package com.example.pacman;
 
 
-public class PacmanObject implements MazeObject {
+
+/**
+ * Třída GhostObject implementující rozhraní MazeObject
+ */
+public class GhostObject implements MazeObject {
     public enum Direction {
-        D, L, R, U, NONE
+        UP, DOWN, LEFT, RIGHT, NONE
     };
     private int row, col;
-    public Direction direction;
+    private PacmanObject.Direction direction;
     public PathField field;
-    public int lives;
 
     /**
      * Konstruktor
      */
-    public PacmanObject(int row,
+    public GhostObject(int row,
                         int col) {
         this.row = row;
         this.col = col;
-        this.direction = Direction.NONE;
-        this.lives = 3;
     }
+
     /**
-     * Funkce pro zjištění, zda se může pacman přemístit na políčko
+     * Funkce pro zjištění, zda se může duch přemístit na políčko
      */
     public boolean canMove(Field.Direction dir) {
         int nextcol = dir.getColDelta() + this.col;
@@ -29,18 +31,26 @@ public class PacmanObject implements MazeObject {
 
         return this.field.maze.getField(nextrow, nextcol).canMove();
     }
+
     /**
-     * Funkce se stará o přemístění pacmana na políčko
+     * Funkce se stará o přemístění ducha na políčko
      */
     public boolean move(Field.Direction dir) {
         if(canMove(dir)){
             int nextcol = dir.getColDelta() + this.col;
             int nextrow = dir.getRowDelta() + this.row;
-            this.field.objectOnField = null;
+            if (this.field.objectOnField != null && !(this.field.objectOnField instanceof PacmanObject)){
+                this.field.objectOnField = null;
+            }
             this.row = nextrow;
             this.col = nextcol;
             this.field = (PathField) this.field.maze.getField(nextrow, nextcol);
-            this.field.objectOnField = this;
+            if (this.field.objectOnField != null && this.field.objectOnField instanceof PacmanObject){
+                ((PacmanObject) this.field.objectOnField).lives--;
+            }
+            else{
+                this.field.objectOnField = this;
+            }
             return true;
         }
         return false;
