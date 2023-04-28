@@ -10,7 +10,7 @@
 <BorderPane fx:controller="com.example.pacman.GameController" xmlns:fx="http://javafx.com/fxml">
 
     <center>
-        <GameController fx:id="gameController" rows="1" cols="1"/>
+        <GameController fx:id="gameController"/>
     </center>
 
 </BorderPane>

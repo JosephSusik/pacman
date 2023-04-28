@@ -32,9 +32,14 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
 
     private double CellSize = 30.0;
 
+    public void giveMaze(Maze maze) {
+        this.maze = maze;
+    }
+
 
     public void useMaze(Maze maze) {
         this.maze = maze;
+        gameController.giveMaze(maze);
         gameController.initializeGrid();
         gameController.update_map();
     }
@@ -66,12 +71,17 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
 
     public void update_map(){
         Image wallImage =  new Image(getClass().getResourceAsStream("wall.png"));
+        Image pacmanUpImage =  new Image(getClass().getResourceAsStream("pacman-up.gif"));
+        Image pacmanDownImage =  new Image(getClass().getResourceAsStream("pacman-down.gif"));
+        Image pacmanRightImage =  new Image(getClass().getResourceAsStream("pacman-right.gif"));
+        Image pacmanLeftImage =  new Image(getClass().getResourceAsStream("pacman-left.gif"));
         for (int row = 0; row < this.maze.numRows(); row++) {
             for (int col = 0; col < this.maze.numCols(); col++) {
                 Field cell = maze.getField(row, col);
                 if (cell instanceof WallField) {
-                    System.out.print("Jsem tu");
                     this.cellViews[row][col].setImage(wallImage);
+                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof PacmanObject) {
+                    this.cellViews[row][col].setImage(pacmanRightImage);
                 }
             }
         }
