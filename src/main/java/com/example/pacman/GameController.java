@@ -15,10 +15,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameController extends Group implements EventHandler<KeyEvent> {
-
+    @FXML
+    private int rows;
+    @FXML
+    private int cols;
 
     @FXML
     private ImageView[][] cellViews;
+
+    @FXML
+    private GameController gameController;
+
+
 
     private Maze maze;
 
@@ -27,15 +35,19 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
 
     public void useMaze(Maze maze) {
         this.maze = maze;
-        initializeGrid();
-        update_map();
+        gameController.initializeGrid();
+        gameController.update_map();
+    }
+
+    public void initialize1() {
+        gameController.initializeGrid();
+        gameController.update_map();
     }
 
     /**
      * Constructs an empty grid of ImageViews
      */
     private void initializeGrid() {
-
         if (this.maze.numRows() > 0 && this.maze.numCols() > 0) {
             this.cellViews = new ImageView[this.maze.numRows()][this.maze.numCols()];
             for (int row = 0; row < this.maze.numRows(); row++) {
