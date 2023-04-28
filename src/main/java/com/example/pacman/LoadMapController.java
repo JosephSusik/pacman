@@ -99,7 +99,7 @@ public class LoadMapController implements Initializable{
 
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         stage.setTitle("Pac-Man");
-                        stage.setScene(new Scene(root, 800, 800));
+                        stage.setScene(new Scene(root, maze.numRows()*30, maze.numCols()*30));
                         stage.show();
                         root.requestFocus();
 

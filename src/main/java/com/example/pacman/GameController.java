@@ -83,7 +83,6 @@ public class GameController extends Group implements EventHandler<KeyEvent> {
         Image pacmanRightImage =  new Image(getClass().getResourceAsStream("pacman-right.gif"));
         Image pacmanLeftImage =  new Image(getClass().getResourceAsStream("pacman-left.gif"));
         Image pacmanGhostImage =  new Image(getClass().getResourceAsStream("ghost-yellow.gif"));
-        Image pathImage =  new Image(getClass().getResourceAsStream("path.png"));
         for (int row = 0; row < this.maze.numRows(); row++) {
             for (int col = 0; col < this.maze.numCols(); col++) {
                 Field cell = maze.getField(row, col);
