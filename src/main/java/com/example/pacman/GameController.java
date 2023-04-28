@@ -17,17 +17,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameController extends Group implements EventHandler<KeyEvent> {
-    @FXML
-    private int rows;
-    @FXML
-    private int cols;
 
     @FXML
     private ImageView[][] cellViews;
 
     @FXML
     private GameController gameController;
-
 
     private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
 
