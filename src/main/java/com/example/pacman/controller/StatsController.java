@@ -37,7 +37,7 @@ public class StatsController extends Group {
         this.pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
         this.backup_lives = pacman.lives;
-        this.pacmanHeartImage =  new Image(getClass().getResourceAsStream("full-heart-2.png"));
+        this.pacmanHeartImage =  new Image(getClass().getResourceAsStream("image/full-heart-2.png"));
     }
 
     public void initializeGrid() {

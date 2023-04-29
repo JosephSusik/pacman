@@ -25,7 +25,7 @@ public class HelloController implements Initializable {
         btn_startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Utils.changeScene(actionEvent, "start-game.fxml", "Start Game!");
+                Utils.changeScene(actionEvent, "fxml/start-game.fxml", "Start Game!");
             }
         });
 

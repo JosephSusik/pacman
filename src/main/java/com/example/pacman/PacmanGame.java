@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class PacmanGame extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("controller/fxml/menu-view.fxml"));
         stage.setTitle("Pac-Man");
         stage.setScene(new Scene(root, 320,240));
         stage.show();

@@ -92,7 +92,7 @@ public class LoadMapController implements Initializable{
                         cfg.stopReading();
                         Maze maze = cfg.createMaze();
 
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("running-game.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/running-game.fxml"));
                         Parent root = loader.load();
 
                         GameController gameController = loader.getController();
@@ -102,7 +102,7 @@ public class LoadMapController implements Initializable{
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         stage.setTitle("Pac-Man");
                         Scene scene = new Scene(root, maze.numRows()*30+30, maze.numCols()*30+90);
-                        scene.getStylesheets().add(getClass().getResource("styling.css").toExternalForm());
+                        scene.getStylesheets().add(getClass().getResource("fxml/style/styling.css").toExternalForm());
                         stage.setScene(scene);
                         stage.show();
                         root.requestFocus();
@@ -120,7 +120,7 @@ public class LoadMapController implements Initializable{
         btn_back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Utils.changeScene(actionEvent,"hello-view.fxml", "Pac-Man");
+                Utils.changeScene(actionEvent,"fxml/menu-view.fxml", "Pac-Man");
             }
         });
     }

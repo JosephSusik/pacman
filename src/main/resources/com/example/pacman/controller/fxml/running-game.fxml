@@ -14,6 +14,12 @@
 
 <BorderPane fx:controller="com.example.pacman.controller.GameController" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml">
 
+    <top>
+        <BorderPane prefHeight="35" style="-fx-background-color: #023047; -fx-padding: 10px, 5px, 10px, 5px" >
+            <center><Label fx:id="logMessages" style="-fx-font-size: 150%; -fx-text-fill: white"/></center>
+        </BorderPane>
+    </top>
+
     <center>
         <MapController fx:id="mapController"/>
     </center>

@@ -41,12 +41,12 @@ public class MapController extends Group {
         this.pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
         System.out.println(this.PoleGhostu);
-        this.wallImage =  new Image(getClass().getResourceAsStream("wall.png"));
-        this.pacmanUpImage =  new Image(getClass().getResourceAsStream("pacman-up.gif"));
-        this.pacmanDownImage =  new Image(getClass().getResourceAsStream("pacman-down.gif"));
-        this.pacmanRightImage =  new Image(getClass().getResourceAsStream("pacman-right.gif"));
-        this.pacmanLeftImage =  new Image(getClass().getResourceAsStream("pacman-left.gif"));
-        this.pacmanGhostImage =  new Image(getClass().getResourceAsStream("ghost-yellow.gif"));
+        this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
+        this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
+        this.pacmanDownImage =  new Image(getClass().getResourceAsStream("gif/pacman-down.gif"));
+        this.pacmanRightImage =  new Image(getClass().getResourceAsStream("gif/pacman-right.gif"));
+        this.pacmanLeftImage =  new Image(getClass().getResourceAsStream("gif/pacman-left.gif"));
+        this.pacmanGhostImage =  new Image(getClass().getResourceAsStream("gif/ghost-yellow.gif"));
     }
 
     public void initializeGrid() {

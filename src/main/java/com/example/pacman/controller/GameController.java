@@ -40,6 +40,9 @@ public class GameController implements EventHandler<KeyEvent> {
     @FXML
     private Label score;
 
+    @FXML
+    private Label logMessageslogMessages;
+
     private Font pixel_font;
 
     private Timer timer;
@@ -59,7 +62,7 @@ public class GameController implements EventHandler<KeyEvent> {
         statsController.initializeGrid();
         statsController.update_stats();
 
-        pixel_font = Font.loadFont(getClass().getResourceAsStream("ArcadeFont.ttf"), 12);
+        pixel_font = Font.loadFont(getClass().getResourceAsStream("fxml/style/ArcadeFont.ttf"), 12);
 
         score.setText(String.format("Score 0"));
         steps.setText(String.format("Steps: %d", pacman.steps));
