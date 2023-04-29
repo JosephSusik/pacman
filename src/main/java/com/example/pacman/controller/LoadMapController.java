@@ -1,5 +1,7 @@
-package com.example.pacman;
+package com.example.pacman.controller;
 
+import com.example.pacman.common.Maze;
+import com.example.pacman.game.MazeConfigure;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -95,11 +97,11 @@ public class LoadMapController implements Initializable{
 
                         GameController gameController = loader.getController();
                         root.setOnKeyPressed(gameController);
-                        gameController.useMaze(maze);
+                        gameController.startGame(maze);
 
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         stage.setTitle("Pac-Man");
-                        stage.setScene(new Scene(root, maze.numRows()*30, maze.numCols()*30));
+                        stage.setScene(new Scene(root, maze.numRows()*30, maze.numCols()*30+40));
                         stage.show();
                         root.requestFocus();
 

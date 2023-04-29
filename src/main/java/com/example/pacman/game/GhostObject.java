@@ -1,5 +1,8 @@
-package com.example.pacman;
+package com.example.pacman.game;
 
+
+import com.example.pacman.common.Field;
+import com.example.pacman.common.MazeObject;
 
 import java.util.Random;
 

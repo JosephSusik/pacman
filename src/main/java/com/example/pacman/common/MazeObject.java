@@ -1,4 +1,4 @@
-package com.example.pacman;
+package com.example.pacman.common;
 
 
 public interface MazeObject {

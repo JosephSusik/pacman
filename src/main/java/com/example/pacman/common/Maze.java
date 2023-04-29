@@ -1,5 +1,7 @@
-package com.example.pacman;
+package com.example.pacman.common;
 
+
+import com.example.pacman.game.PacmanObject;
 
 import java.util.List;
 

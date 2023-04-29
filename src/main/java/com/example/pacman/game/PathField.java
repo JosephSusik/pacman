@@ -1,7 +1,11 @@
-package com.example.pacman;
+package com.example.pacman.game;
 
 
-public class WallField implements Field{
+import com.example.pacman.common.Field;
+import com.example.pacman.common.Maze;
+import com.example.pacman.common.MazeObject;
+
+public class PathField implements Field {
     private int row, col;
     public Maze maze;
     public MazeObject objectOnField = null;
@@ -9,7 +13,7 @@ public class WallField implements Field{
     /**
      * Konstruktor
      */
-    public WallField(int row,
+    public PathField(int row,
                      int col){
         this.row = row;
         this.col = col;
@@ -20,27 +24,37 @@ public class WallField implements Field{
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
+
     /**
      * Funkce pro získaní políčka v daném směru od aktuálního
-     * Vrací exception, protože se jedná o WallField
      */
     public Field nextField(Field.Direction dirs) {
-        throw new UnsupportedOperationException("Invalid operation for sorted list.");
+
+        int nextcol = dirs.getColDelta() + this.col;
+        int nextrow = dirs.getRowDelta() + this.row;
+
+        return maze.getField(nextrow, nextcol);
     }
+
     /**
      * Funkce pro vložení zadaného objektu na políčko
-     * Vrací exception, protože se jedná o WallField
      */
     public boolean put(MazeObject object) {
-        throw new UnsupportedOperationException("Invalid operation for sorted list.");
+        this.objectOnField = object;
+        return true;
     }
+
     /**
      * Funkce pro odstranění objektu z políčka
-     * Vrací exception, protože se jedná o WallField
      */
     public boolean remove(MazeObject object) {
-        throw new UnsupportedOperationException("Invalid operation for sorted list.");
+        if(object == this.objectOnField){
+            this.objectOnField = null;
+            return true;
+        }
+        return false;
     }
+
     /**
      * Funkce pro zjištění, zda je políčko prázdné
      * Pokud ano, vrací se true.
@@ -51,18 +65,20 @@ public class WallField implements Field{
         }
         return false;
     }
+
     /**
      * Funkce pro získání objektu na daném políčku
      */
     public MazeObject get() {
-        return null;
+        return objectOnField;
     }
+
     /**
      * Funkce pro získání informace, zda se dá na políčko přemístit.
-     * Vrací false, protože se jedná ho WallField
+     * Vrací true, protože se jedná ho PathField
      */
     public boolean canMove() {
-        return false;
+        return true;
     }
 
     /**
@@ -75,7 +91,7 @@ public class WallField implements Field{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final WallField other = (WallField) obj;
+        final PathField other = (PathField) obj;
         if (this.row!= other.row) {
             return false;
         }
@@ -84,5 +100,4 @@ public class WallField implements Field{
         }
         return true;
     }
-
 }

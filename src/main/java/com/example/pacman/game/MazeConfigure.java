@@ -1,9 +1,11 @@
-package com.example.pacman;
+package com.example.pacman.game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import com.example.pacman.Maze;
+
+import com.example.pacman.common.Field;
+import com.example.pacman.common.Maze;
+import com.example.pacman.common.MazeObject;
 
 public class MazeConfigure {
     private int rows, cols;

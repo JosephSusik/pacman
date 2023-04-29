@@ -1,4 +1,4 @@
-package com.example.pacman;
+package com.example.pacman.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
