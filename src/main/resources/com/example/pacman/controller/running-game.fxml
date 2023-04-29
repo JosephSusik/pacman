@@ -9,6 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import com.example.pacman.controller.MapController?>
 <?import com.example.pacman.controller.StatsController?>
+
+<?import java.net.URL?>
+
 <BorderPane fx:controller="com.example.pacman.controller.GameController" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml">
 
     <center>
@@ -16,7 +19,10 @@
     </center>
 
     <bottom>
-        <StatsController fx:id="statsController"/>
+        <BorderPane prefHeight="35" style="-fx-background-color: #023047; -fx-padding: 10px, 5px, 10px, 5px" >
+            <left><Label fx:id="steps" style="-fx-font-size: 150%; -fx-text-fill: white"/></left>
+            <center><StatsController fx:id="statsController"/></center>
+            <right><Label fx:id="score" style="-fx-font-size: 150%; -fx-text-fill: white"/></right>
+        </BorderPane>
     </bottom>
-
 </BorderPane>

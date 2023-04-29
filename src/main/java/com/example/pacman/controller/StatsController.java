@@ -10,6 +10,7 @@ import com.example.pacman.game.WallField;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +25,18 @@ public class StatsController extends Group {
 
     private PacmanObject pacman;
 
+    private int backup_lives;
+
     private double CellSize = 40.0;
 
     private Image pacmanHeartImage;
+
 
     public void setStats(Maze maze) {
         this.maze = maze;
         this.pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
+        this.backup_lives = pacman.lives;
         this.pacmanHeartImage =  new Image(getClass().getResourceAsStream("full-heart-2.png"));
     }
 
@@ -50,10 +55,18 @@ public class StatsController extends Group {
         }
     }
 
+    public void reset_stats() {
+        pacman.lives = backup_lives;
+    }
+
     public void update_stats(){
         for (int row = 0; row < 1; row++) {
-            for (int col = 0; col < pacman.lives; col++) {
-                this.cellViews[row][col].setImage(pacmanHeartImage);
+            for (int col = 0; col < backup_lives; col++) {
+                if (col < pacman.lives){
+                    this.cellViews[row][col].setImage(pacmanHeartImage);
+                } else {
+                    this.cellViews[row][col].setImage(null);
+                }
             }
         }
     }
