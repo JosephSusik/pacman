@@ -41,14 +41,15 @@ public class GameController implements EventHandler<KeyEvent> {
     private Label score;
 
     @FXML
-    private Label logMessageslogMessages;
+    private Label logMessages;
+
+    private int messages;
 
     private Font pixel_font;
 
     private Timer timer;
 
     private PacmanObject pacman;
-
 
     public void startGame(Maze maze) throws FileNotFoundException {
 
@@ -66,6 +67,7 @@ public class GameController implements EventHandler<KeyEvent> {
 
         score.setText(String.format("Score 0"));
         steps.setText(String.format("Steps: %d", pacman.steps));
+        messages = 0;
 
         setTimer();
     }
@@ -83,6 +85,21 @@ public class GameController implements EventHandler<KeyEvent> {
         setTimer();
     }
 
+    private void printLabel() {
+        if (messages == 0){
+            logMessages.setText(String.format("Use arrows to navigate pacman"));
+            messages++;
+        } else if (messages == 3){
+            logMessages.setText(String.format("Press N key to restart game"));
+            messages++;
+        } else if (messages == 6){
+            logMessages.setText(String.format("Press P key to pause game"));
+            messages++;
+        } else if (messages == 9){
+            messages = 0;
+        }
+    }
+
     public void setTimer() {
         this.timer = new Timer();
 
@@ -94,6 +111,7 @@ public class GameController implements EventHandler<KeyEvent> {
                     statsController.update_stats();
                     score.setText(String.format("Score 0"));
                     steps.setText(String.format("Steps: %d", pacman.steps));
+                    printLabel();
                 });
             }
         };
