@@ -114,6 +114,11 @@ public class MapController extends Group {
         }
         Field pac_field = pacman.getField();
         for(MazeObject ghost : PoleGhostu) {
+
+            if (ghost.getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
             //Ghost move
             int ghostX = ghost.ghostX();
             int ghostY = ghost.ghostY();
