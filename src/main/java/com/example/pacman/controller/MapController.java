@@ -114,11 +114,19 @@ public class MapController extends Group {
         }
         Field pac_field = pacman.getField();
         for(MazeObject ghost : PoleGhostu) {
+            //Ghost move
+            int ghostX = ghost.ghostX();
+            int ghostY = ghost.ghostY();
+            int pacY = pacman.row;
+            int pacX = pacman.col;
+
+            ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
+
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
                 restart = true;
             }
-            ghost.move(Field.Direction.R);
+            //ghost.move(Field.Direction.R);
         }
 
         if (restart) {
@@ -149,4 +157,59 @@ public class MapController extends Group {
         pacman.next_direction = dir;
     }
 
+    //currentX, currentY = X,Y coordinates of ghost
+    //targetX, targetY = X,Y coordinates of pacman
+    public Field.Direction move_ghost(int currentX, int currentY, int targetX, int targetY, MazeObject ghost) {
+        int horizonDiff = currentX - targetX;
+        int verticalDiff = currentY - targetY;
+        Field.Direction currentDir;
+        //left/right?
+        Field.Direction horizonDir = horizonDiff > 0? Field.Direction.L : Field.Direction.R;
+        //up/down?
+        Field.Direction verticalDir = verticalDiff > 0? Field.Direction.U : Field.Direction.D;
+
+        if(Math.abs(verticalDiff) > Math.abs(horizonDiff)) {
+            currentDir = verticalDir;
+        } else {
+            currentDir = horizonDir;
+        }
+        if(!ghost.canMove(currentDir)) {
+            if(currentDir == verticalDir) {
+                if (ghost.GetLastDir() == Field.Direction.L || ghost.GetLastDir() == Field.Direction.R) {
+                    ghost.setCurrDir(ghost.GetLastDir());
+                    currentDir = ghost.GetLastDir();
+                    if(!ghost.canMove(currentDir)) {
+                        currentDir = currentDir == Field.Direction.L ? Field.Direction.R : Field.Direction.L;
+                    }
+                } else {
+                    currentDir = horizonDir;
+                    if(!ghost.canMove(currentDir)) {
+                        currentDir = horizonDir == Field.Direction.L ? Field.Direction.R : Field.Direction.L;
+                        if(!ghost.canMove(currentDir)) {
+                            currentDir = verticalDir == Field.Direction.U ? Field.Direction.D : Field.Direction.U;
+                        }
+                    }
+                }
+            } else {
+                if (ghost.GetLastDir() == Field.Direction.U || ghost.GetLastDir() == Field.Direction.D) {
+                    ghost.setCurrDir(ghost.GetLastDir());
+                    currentDir = ghost.GetLastDir();
+                    if(!ghost.canMove(currentDir)) {
+                        currentDir = currentDir == Field.Direction.U ? Field.Direction.D : Field.Direction.U;
+                    }
+                } else {
+                    currentDir = verticalDir;
+                    if(!ghost.canMove(currentDir)) {
+                        currentDir = verticalDir == Field.Direction.U ? Field.Direction.D : Field.Direction.U;
+                        if(!ghost.canMove(currentDir)) {
+                            currentDir = horizonDir == Field.Direction.L ? Field.Direction.R : Field.Direction.L;
+                        }
+                    }
+                }
+            }
+        }
+        //set lastdir as currdir
+        ghost.setLastDir(currentDir);
+        return currentDir;
+    }
 }

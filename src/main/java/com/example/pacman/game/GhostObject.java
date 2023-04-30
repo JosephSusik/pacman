@@ -20,10 +20,14 @@ public class GhostObject implements MazeObject {
             return directions[PRNG.nextInt(directions.length)];
         }
     };
-    private int row, col;
+    public int row, col;
     private int orow, ocol;
     private PacmanObject.Direction direction;
     public PathField field;
+
+    public Field.Direction lastDir = Field.Direction.L;
+    public Field.Direction currDir = null;
+
 
     /**
      * Konstruktor
@@ -36,12 +40,36 @@ public class GhostObject implements MazeObject {
         this.ocol = col;
     }
 
+    public int ghostX() {
+        return col;
+    }
+    public int ghostY() {
+        return row;
+    }
+
+    public Field.Direction GetLastDir() {
+        return lastDir;
+    }
+
+    public Field.Direction GetCurrDir() {
+        return currDir;
+    }
+    public void setCurrDir(Field.Direction dir) {
+        currDir = dir;
+    }
+    public void setLastDir(Field.Direction dir) {
+        lastDir = dir;
+    }
+
+
     public void reset() {
         this.field.objectOnField = null;
         this.row = orow;
         this.col = ocol;
         this.field.maze.getField(this.row, this.col).put(this);
         this.field = (PathField) this.field.maze.getField(this.row, this.col);
+        this.currDir = null;
+        this.lastDir = Field.Direction.L;
     }
 
     /**

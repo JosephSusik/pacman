@@ -8,7 +8,7 @@ public class PacmanObject implements MazeObject {
     public enum Direction {
         D, L, R, U, NONE
     };
-    private int row, col;
+    public int row, col;
     private int orow, ocol;
     public Direction next_direction;
     public Direction current_direction;
@@ -71,4 +71,12 @@ public class PacmanObject implements MazeObject {
     public Field getField() {
         return field;
     }
+
+    public int ghostX() {return 0;}
+    public int ghostY() {return 0;}
+    public Field.Direction GetLastDir() {return null;}
+    public Field.Direction GetCurrDir() {return null;}
+    public void setCurrDir(Field.Direction dir) {}
+    public void setLastDir(Field.Direction dir) {}
+
 }
