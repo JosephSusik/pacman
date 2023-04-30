@@ -123,7 +123,7 @@ public class MapController extends Group {
             //Ghost 1
             ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
 
-            /*Ghost 2
+            /* Ghost 2
             * targetX = targetX-pacX
             * targetY = targetY-pacY
             */
