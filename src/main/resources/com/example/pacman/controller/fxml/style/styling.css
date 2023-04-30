@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Pixel Emulator';
+    src: url('ArcadeFont.ttf');
+}
 
 .label {
     -fx-font-family: "Pixel Emulator";
@@ -5,6 +9,17 @@
 }
 
 Label {
+    -fx-font-family: "Pixel Emulator";
+    -fx-font-size: 10;
+}
+
+Button {
+    -fx-font-family: "Pixel Emulator";
+    -fx-font-size: 10;
+    border-radius: 0;
+}
+
+.button {
     -fx-font-family: "Pixel Emulator";
     -fx-font-size: 10;
 }

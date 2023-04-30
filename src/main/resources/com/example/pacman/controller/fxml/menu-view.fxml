@@ -4,12 +4,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
+<?import javafx.scene.control.Label?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      style="-fx-background-color: black; -fx-font-family: Pixel Emulator;"
       fx:controller="com.example.pacman.controller.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
+    <Label fx:id="pacmanName" style="-fx-font-size: 150%; -fx-text-fill: white;">Pac-Man</Label>
     <Button text="Start Game" fx:id="btn_startGame"/>
     <Button text="Replay Game" fx:id="btn_replayGame"/>
     <Button text="Quit Game" fx:id="btn_quitGame"/>

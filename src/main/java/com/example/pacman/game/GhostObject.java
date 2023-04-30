@@ -20,6 +20,7 @@ public class GhostObject implements MazeObject {
             return directions[PRNG.nextInt(directions.length)];
         }
     };
+
     public int row, col;
     private int orow, ocol;
     private PacmanObject.Direction direction;
