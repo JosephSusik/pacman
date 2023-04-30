@@ -119,6 +119,10 @@ public class MapController extends Group {
                 restart = true;
             }
             ghost.move(Field.Direction.R);
+            if (pacman.lives == 0) {
+                restart = false;
+                return;
+            }
         }
 
         if (restart) {

@@ -19,10 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 public class GameController implements EventHandler<KeyEvent> {
@@ -49,7 +46,11 @@ public class GameController implements EventHandler<KeyEvent> {
 
     private Timer timer;
 
+    private Timer timerMessage;
+
     private PacmanObject pacman;
+
+    private List<String> panelMessages = new ArrayList<>();
 
     public void startGame(Maze maze) throws FileNotFoundException {
 
@@ -67,7 +68,9 @@ public class GameController implements EventHandler<KeyEvent> {
 
         score.setText(String.format("Score 0"));
         steps.setText(String.format("Steps: %d", pacman.steps));
-        messages = 0;
+        panelMessages.add("Use arrows to navigate pacman");
+        panelMessages.add("Press N key to restart game");
+        panelMessages.add("Press P key to pause game");
 
         setTimer();
     }
@@ -85,37 +88,44 @@ public class GameController implements EventHandler<KeyEvent> {
         setTimer();
     }
 
-    private void printLabel() {
-        if (messages == 0){
-            logMessages.setText(String.format("Use arrows to navigate pacman"));
-            messages++;
-        } else if (messages == 3){
-            logMessages.setText(String.format("Press N key to restart game"));
-            messages++;
-        } else if (messages == 6){
-            logMessages.setText(String.format("Press P key to pause game"));
-            messages++;
-        } else if (messages == 9){
-            messages = 0;
-        }
+    private void rotateLabel() {
+        Collections.rotate(panelMessages, 1);
+        logMessages.setText(String.format(panelMessages.get(0)));
     }
 
     public void setTimer() {
         this.timer = new Timer();
+        if (this.timerMessage == null) {
+            this.timerMessage = new Timer();
+            TimerTask taskMessage = new TimerTask() {
+                public void run() {
+                    Platform.runLater(() -> {
+                        rotateLabel();
+                    });
+                }
+            };
+            this.timerMessage.schedule(taskMessage, 0, 2500);
+        }
 
+        this.timerMessage = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {
                 Platform.runLater(() -> {
                     mapController.process_objects();
                     mapController.update_map();
+                    if(pacman.lives == 0){
+                        timer.cancel();
+                        timer = null;
+                        panelMessages.removeAll(panelMessages);
+                        panelMessages.add("Game Over! Press N to restart");
+                        rotateLabel();
+                    }
                     statsController.update_stats();
                     score.setText(String.format("Score 0"));
                     steps.setText(String.format("Steps: %d", pacman.steps));
-                    printLabel();
                 });
             }
         };
-
         this.timer.schedule(task, 0, 500);
     }
 
@@ -132,6 +142,13 @@ public class GameController implements EventHandler<KeyEvent> {
         } else if (code == KeyCode.DOWN) {
             mapController.set_next_direction(PacmanObject.Direction.D);
         } else if (code == KeyCode.N) {
+            if (panelMessages.size() != 3) {
+                panelMessages.removeAll(panelMessages);
+                panelMessages.add("Use arrows to navigate pacman");
+                panelMessages.add("Press N key to restart game");
+                panelMessages.add("Press P key to pause game");
+                rotateLabel();
+            }
             if (timer != null) {
                 timer.cancel();
                 timer = null;
