@@ -120,7 +120,13 @@ public class MapController extends Group {
             int pacY = pacman.row;
             int pacX = pacman.col;
 
+            //Ghost 1
             ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
+
+            /*Ghost 2
+            * targetX = targetX-pacX
+            * targetY = targetY-pacY
+            */
 
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
