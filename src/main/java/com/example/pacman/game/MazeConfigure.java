@@ -14,6 +14,7 @@ public class MazeConfigure {
     private boolean fail = false;
     private Field[][] fields;
     private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
+    private List<KeyObject> PoleKlicu = new ArrayList<KeyObject>();
     private PacmanObject pacman;
 
     /**
@@ -42,7 +43,7 @@ public class MazeConfigure {
         this.actual_rows++;
         // kontrola korektnosti vstupního řetězce
         if((this.actual_rows > this.rows-2)
-                || (!line.matches("^[X.SG]+$"))
+                || (!line.matches("^[X.SGK]+$"))
                 || (line.length() != this.cols-2)
                 || (!this.reading)) {
             this.fail = true;
@@ -81,7 +82,16 @@ public class MazeConfigure {
                 pathField.objectOnField = ghost;
                 this.fields[this.actual_rows][counter+1] = pathField;
                 PoleGhostu.add(ghost);
-            } else {
+            }
+            else if (ltr.equals('K')) {
+                PathField pathField = new PathField(this.actual_rows, counter+1);
+                KeyObject key = new KeyObject(this.actual_rows, counter+1);
+                key.field = pathField;
+                pathField.objectOnField = key;
+                this.fields[this.actual_rows][counter+1] = pathField;
+                PoleKlicu.add(key);
+            }
+            else {
                 return false;
             }
         }
@@ -136,6 +146,11 @@ public class MazeConfigure {
             public List<MazeObject> getGhosts() {
                 List<MazeObject> cloned_list
                         = new ArrayList<MazeObject>(PoleGhostu);
+                return cloned_list;
+            }
+            public List<KeyObject> getKeys() {
+                List<KeyObject> cloned_list
+                        = new ArrayList<KeyObject>(PoleKlicu);
                 return cloned_list;
             }
         };

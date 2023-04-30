@@ -3,10 +3,7 @@ package com.example.pacman.controller;
 import com.example.pacman.common.Field;
 import com.example.pacman.common.Maze;
 import com.example.pacman.common.MazeObject;
-import com.example.pacman.game.GhostObject;
-import com.example.pacman.game.PacmanObject;
-import com.example.pacman.game.PathField;
-import com.example.pacman.game.WallField;
+import com.example.pacman.game.*;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +19,8 @@ public class MapController extends Group {
 
     private List<MazeObject> PoleGhostu;
 
+    private List<KeyObject> PoleKlicu;
+
     private PacmanObject pacman;
 
     private double CellSize = 30.0;
@@ -32,6 +31,7 @@ public class MapController extends Group {
     private Image pacmanRightImage;
     private Image pacmanLeftImage;
     private Image pacmanGhostImage;
+    private Image keyImage;
     private MazeObject ghost;
     private MazeObject ghost1;
 
@@ -40,6 +40,7 @@ public class MapController extends Group {
         this.maze = maze;
         this.pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
+        this.PoleKlicu = maze.getKeys();
         System.out.println(this.PoleGhostu);
         this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
         this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
@@ -47,6 +48,7 @@ public class MapController extends Group {
         this.pacmanRightImage =  new Image(getClass().getResourceAsStream("gif/pacman-right.gif"));
         this.pacmanLeftImage =  new Image(getClass().getResourceAsStream("gif/pacman-left.gif"));
         this.pacmanGhostImage =  new Image(getClass().getResourceAsStream("gif/ghost-yellow.gif"));
+        this.keyImage = new Image(getClass().getResourceAsStream("image/key22.png"));
     }
 
     public void initializeGrid() {
@@ -72,6 +74,8 @@ public class MapController extends Group {
                 Field cell = maze.getField(row, col);
                 if (cell instanceof WallField) {
                     this.cellViews[row][col].setImage(wallImage);
+                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof GhostObject) {
+                    this.cellViews[row][col].setImage(pacmanGhostImage);
                 } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof PacmanObject) {
                     if (pacman.current_direction == PacmanObject.Direction.L) {
                         this.cellViews[row][col].setImage(pacmanLeftImage);
@@ -84,9 +88,10 @@ public class MapController extends Group {
                     } else {
                         this.cellViews[row][col].setImage(pacmanRightImage);
                     }
-                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof GhostObject) {
-                    this.cellViews[row][col].setImage(pacmanGhostImage);
-                } else if (cell instanceof PathField && cell.isEmpty()) {
+                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof KeyObject){
+                    this.cellViews[row][col].setImage(keyImage);
+                }
+                else if (cell instanceof PathField && cell.isEmpty()) {
                     this.cellViews[row][col].setImage(null);
                 }
             }
@@ -113,6 +118,13 @@ public class MapController extends Group {
             }
         }
         Field pac_field = pacman.getField();
+        for (KeyObject tmpKey : PoleKlicu) {
+            if (tmpKey.used == false && tmpKey.getField() == pac_field) {
+                tmpKey.used = true;
+            } else if (tmpKey.used == false) {
+                tmpKey.getField().put(tmpKey);
+            }
+        }
         for(MazeObject ghost : PoleGhostu) {
 
             if (ghost.getField() == pac_field) {
@@ -159,6 +171,9 @@ public class MapController extends Group {
 
     public void restart_maze() {
         pacman.reset();
+        for(KeyObject key : PoleKlicu) {
+            key.reset();
+        }
         for(MazeObject ghost : PoleGhostu) {
             ghost.reset();
         }
