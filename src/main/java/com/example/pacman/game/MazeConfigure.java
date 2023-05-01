@@ -16,6 +16,7 @@ public class MazeConfigure {
     private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
     private List<KeyObject> PoleKlicu = new ArrayList<KeyObject>();
     private List<DoorObject> PoleDveri = new ArrayList<DoorObject>();
+    private List<PathField> PolePolicek = new ArrayList<PathField>();
     private PacmanObject pacman;
 
     /**
@@ -62,6 +63,8 @@ public class MazeConfigure {
             else if (ltr.equals('.')) {
                 PathField pathField = new PathField(this.actual_rows, counter+1);
                 this.fields[this.actual_rows][counter+1] = pathField;
+                pathField.point = true;
+                PolePolicek.add(pathField);
             } // zde se jedná o cestu, vytvoří se Pathfield a vloží se do pole bludiště a vytvoří se objekt pacman
             // nově vytvořený objekt se položí na políčko
             else if (ltr.equals('S')) {
@@ -172,6 +175,11 @@ public class MazeConfigure {
             public List<DoorObject> getDoors() {
                 List<DoorObject> cloned_list
                         = new ArrayList<DoorObject>(PoleDveri);
+                return cloned_list;
+            }
+            public List<PathField> getPaths() {
+                List<PathField> cloned_list
+                        = new ArrayList<PathField>(PolePolicek);
                 return cloned_list;
             }
         };

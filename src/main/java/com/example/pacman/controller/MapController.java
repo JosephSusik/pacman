@@ -23,6 +23,8 @@ public class MapController extends Group {
 
     private List<DoorObject> PoleDveri;
 
+    public List<PathField> PolePolicek;
+
     private PacmanObject pacman;
 
     private double CellSize = 30.0;
@@ -36,16 +38,18 @@ public class MapController extends Group {
     private Image keyImage;
     private Image doorOpenImage;
     private Image doorClosedImage;
+    private Image pointImage;
     private MazeObject ghost;
     private MazeObject ghost1;
 
 
     public void setMaze(Maze maze) {
         this.maze = maze;
-        this.pacman = maze.getPacman();
+        pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
         this.PoleKlicu = maze.getKeys();
         this.PoleDveri = maze.getDoors();
+        this.PolePolicek = maze.getPaths();
         this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
         this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
         this.pacmanDownImage =  new Image(getClass().getResourceAsStream("gif/pacman-down.gif"));
@@ -55,6 +59,7 @@ public class MapController extends Group {
         this.keyImage = new Image(getClass().getResourceAsStream("image/key22.png"));
         this.doorClosedImage  = new Image(getClass().getResourceAsStream("image/door-closed2.png"));
         this.doorOpenImage  = new Image(getClass().getResourceAsStream("image/door-open2.png"));
+        this.pointImage  = new Image(getClass().getResourceAsStream("image/point2.png"));
     }
 
     public void initializeGrid() {
@@ -103,6 +108,9 @@ public class MapController extends Group {
                         this.cellViews[row][col].setImage(doorClosedImage);
                     }
                 }
+                else if (cell instanceof PathField && cell.isEmpty() && ((PathField) cell).point == true) {
+                    this.cellViews[row][col].setImage(pointImage);
+                }
                 else if (cell instanceof PathField && cell.isEmpty()) {
                     this.cellViews[row][col].setImage(null);
                 }
@@ -131,6 +139,13 @@ public class MapController extends Group {
         }
     }
 
+    public void process_points() {
+        if (pacman.field.point == true) {
+            pacman.field.point = false;
+            pacman.score += 10;
+        }
+    }
+
     public void process_objects(){
         boolean restart = false;
         //pohyb pacman
@@ -146,6 +161,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_points();
                 }
             } else if (pacman.current_direction != pacman.next_direction) {
                 if (pacman.canMove(ndir)) {
@@ -157,6 +173,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_points();
                 } else if (pacman.canMove(cdir)) {
                     pacman.move(cdir);
                     process_keys();
@@ -165,6 +182,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_points();
                 }
             }
         }
