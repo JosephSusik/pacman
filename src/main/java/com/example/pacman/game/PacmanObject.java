@@ -15,6 +15,7 @@ public class PacmanObject implements MazeObject {
     public PathField field;
     public int lives;
     public int steps;
+    public int score;
     public boolean won;
 
     /**
@@ -31,6 +32,7 @@ public class PacmanObject implements MazeObject {
         this.lives = 3;
         this.steps = 0;
         this.won = false;
+        this.score = 0;
     }
     /**
      * Funkce pro zjištění, zda se může pacman přemístit na políčko
@@ -67,7 +69,6 @@ public class PacmanObject implements MazeObject {
         this.field = (PathField) this.field.maze.getField(this.row, this.col);
         this.current_direction = Direction.NONE;
         this.next_direction = Direction.NONE;
-        this.steps = 0;
         this.won = false;
     }
 

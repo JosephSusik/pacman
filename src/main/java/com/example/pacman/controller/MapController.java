@@ -23,6 +23,8 @@ public class MapController extends Group {
 
     private List<DoorObject> PoleDveri;
 
+    public List<PathField> PolePolicek;
+
     private PacmanObject pacman;
 
     private double CellSize = 30.0;
@@ -36,6 +38,7 @@ public class MapController extends Group {
     private Image keyImage;
     private Image doorOpenImage;
     private Image doorClosedImage;
+    private Image pointImage;
     private MazeObject ghost;
     private MazeObject ghost1;
 
@@ -46,6 +49,7 @@ public class MapController extends Group {
         this.PoleGhostu = maze.getGhosts();
         this.PoleKlicu = maze.getKeys();
         this.PoleDveri = maze.getDoors();
+        this.PolePolicek = maze.getPaths();
         this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
         this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
         this.pacmanDownImage =  new Image(getClass().getResourceAsStream("gif/pacman-down.gif"));
@@ -55,6 +59,7 @@ public class MapController extends Group {
         this.keyImage = new Image(getClass().getResourceAsStream("image/key22.png"));
         this.doorClosedImage  = new Image(getClass().getResourceAsStream("image/door-closed2.png"));
         this.doorOpenImage  = new Image(getClass().getResourceAsStream("image/door-open2.png"));
+        this.pointImage  = new Image(getClass().getResourceAsStream("image/point2.png"));
     }
 
     public void initializeGrid() {
@@ -103,10 +108,20 @@ public class MapController extends Group {
                         this.cellViews[row][col].setImage(doorClosedImage);
                     }
                 }
+                else if (cell instanceof PathField && cell.isEmpty() && ((PathField) cell).point == true) {
+                    this.cellViews[row][col].setImage(pointImage);
+                }
                 else if (cell instanceof PathField && cell.isEmpty()) {
                     this.cellViews[row][col].setImage(null);
                 }
             }
+        }
+    }
+
+    public void process_point() {
+        if (pacman.field.point == true) {
+            pacman.field.point = false;
+            pacman.score += 10;
         }
     }
 
@@ -146,6 +161,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_point();
                 }
             } else if (pacman.current_direction != pacman.next_direction) {
                 if (pacman.canMove(ndir)) {
@@ -157,6 +173,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_point();
                 } else if (pacman.canMove(cdir)) {
                     pacman.move(cdir);
                     process_keys();
@@ -165,6 +182,7 @@ public class MapController extends Group {
                             pacman.won = true;
                         }
                     }
+                    process_point();
                 }
             }
         }
@@ -188,6 +206,7 @@ public class MapController extends Group {
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
                 restart = true;
+                break;
             }
             //Ghost move
             int ghostX = ghost.ghostX();
@@ -231,6 +250,7 @@ public class MapController extends Group {
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
                 restart = true;
+                break;
             }
             //ghost.move(Field.Direction.R);
         }

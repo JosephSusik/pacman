@@ -82,7 +82,7 @@ public class GameController implements EventHandler<KeyEvent> {
         mapController.update_map();
         statsController.update_stats();
 
-        score.setText(String.format("Score: 0"));
+        score.setText(String.format("Score: %d", pacman.score));
         steps.setText(String.format("Steps: %d", pacman.steps));
 
         setTimer();
@@ -128,7 +128,7 @@ public class GameController implements EventHandler<KeyEvent> {
                         rotateLabel();
                     }
                     statsController.update_stats();
-                    score.setText(String.format("Score 0"));
+                    score.setText(String.format("Score: %d", pacman.score));
                     steps.setText(String.format("Steps: %d", pacman.steps));
                 });
             }
@@ -161,6 +161,11 @@ public class GameController implements EventHandler<KeyEvent> {
                 timer = null;
             }
             restartGame();
+            pacman.score = 0;
+            pacman.steps = 0;
+            for (PathField path : mapController.PolePolicek) {
+                path.point = true;
+            }
         } else if (code == KeyCode.P) {
             if (timer == null) {
                 setTimer();

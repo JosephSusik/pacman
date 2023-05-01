@@ -9,6 +9,7 @@ public class PathField implements Field {
     private int row, col;
     public Maze maze;
     public MazeObject objectOnField = null;
+    public boolean point;
 
     /**
      * Konstruktor
@@ -17,6 +18,7 @@ public class PathField implements Field {
                      int col){
         this.row = row;
         this.col = col;
+        this.point = false;
     }
     /**
      * Funkce pro přiřazení políčka k bludišti
