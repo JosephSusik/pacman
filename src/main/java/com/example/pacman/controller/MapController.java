@@ -176,21 +176,7 @@ public class MapController extends Group {
                 tmpKey.getField().put(tmpKey);
             }
         }
-        /*
-        for(MazeObject ghost : PoleGhostu) {
-            /*
-            první - PoleGhostu.get(0)
-            MazeObject gh1 = PoleGhostu.get(0);
-            MazeObject gh2 = PoleGhostu.get(1);
-
-            poslední - PoleGhostu.get(PoleGhostu.size()-1)
-
-
-            if (ghost.getField() == pac_field) {
-                pacman.lives--;
-                restart = true;
-            }
-          */
+        
         //GHOSTI
         //Jeden ghost
         if(PoleGhostu.size() == 1) {
@@ -338,54 +324,6 @@ public class MapController extends Group {
                 }
             }
         }
-        //Ghost move
-        /*
-            int ghostX = ghost.ghostX();
-            int ghostY = ghost.ghostY();
-            int pacY = pacman.row;
-            int pacX = pacman.col;
-
-            //Ghost 1
-            ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
-            /* Ghost 2 - Pinky
-            if(pacman.current_direction == PacmanObject.Direction.L) {
-                targetX = pacman.col-4;
-                targetY = pacman.row;
-            }
-            if(pacman.current_direction == PacmanObject.Direction.R) {
-                targetX = pacman.col+4;
-                targetY = pacman.row;
-            }
-            if(pacman.current_direction == PacmanObject.Direction.D) {
-                targetX = pacman.col;
-                targetY = pacman.row-4;
-            }
-            if(pacman.current_direction == PacmanObject.Direction.U) {
-                targetX = pacman.col-4;
-                targetY = pacman.row+4;
-            }
-            ghost.move(move_ghost(ghostX, ghostY, targetX, targetY, ghost));
-
-
-            /* Ghost 3 - Clyde
-            //Distance from pacman
-            distX = Math.abs(ghostX - targetX)
-            distY = Math.abs(ghostY - targetY)
-            if(distX > 8 || distY > 8) {
-                ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
-            } else {
-                ghost.move(move_ghost(ghostX, ghostY, 0, 0, ghost));
-            }
-
-
-            if (ghost.getField() == pac_field) {
-                pacman.lives--;
-                restart = true;
-            }
-
-         */
-            //ghost.move(Field.Direction.R);
-        //}
 
         if (restart) {
             restart_maze();
