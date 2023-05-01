@@ -141,16 +141,30 @@ public class MapController extends Group {
                 if (pacman.canMove(ndir)) {
                     pacman.move(ndir);
                     process_keys();
-
+                    for (DoorObject door : PoleDveri) {
+                        if (door.getField() == pacman.getField() && door.open == true) {
+                            pacman.won = true;
+                        }
+                    }
                 }
             } else if (pacman.current_direction != pacman.next_direction) {
                 if (pacman.canMove(ndir)) {
                     pacman.current_direction = pacman.next_direction;
                     pacman.move(ndir);
                     process_keys();
+                    for (DoorObject door : PoleDveri) {
+                        if (door.getField() == pacman.getField() && door.open == true) {
+                            pacman.won = true;
+                        }
+                    }
                 } else if (pacman.canMove(cdir)) {
                     pacman.move(cdir);
                     process_keys();
+                    for (DoorObject door : PoleDveri) {
+                        if (door.getField() == pacman.getField() && door.open == true) {
+                            pacman.won = true;
+                        }
+                    }
                 }
             }
         }

@@ -113,6 +113,13 @@ public class GameController implements EventHandler<KeyEvent> {
                 Platform.runLater(() -> {
                     mapController.process_objects();
                     mapController.update_map();
+                    if (pacman.won == true) {
+                        timer.cancel();
+                        timer = null;
+                        panelMessages.removeAll(panelMessages);
+                        panelMessages.add("You Won! Press N to restart");
+                        rotateLabel();
+                    }
                     if(pacman.lives == 0){
                         timer.cancel();
                         timer = null;
