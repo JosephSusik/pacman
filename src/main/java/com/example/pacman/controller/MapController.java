@@ -127,7 +127,7 @@ public class MapController extends Group {
         }
         for(MazeObject ghost : PoleGhostu) {
             /*
-            PoleGhostu.get(0)
+            první - PoleGhostu.get(0)
             poslední - PoleGhostu.get(PoleGhostu.size()-1)
             */
 
