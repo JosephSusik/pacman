@@ -128,6 +128,9 @@ public class MapController extends Group {
         for(MazeObject ghost : PoleGhostu) {
             /*
             první - PoleGhostu.get(0)
+            MazeObject gh1 = PoleGhostu.get(0);
+            MazeObject gh2 = PoleGhostu.get(1);
+
             poslední - PoleGhostu.get(PoleGhostu.size()-1)
             */
 
@@ -149,7 +152,7 @@ public class MapController extends Group {
                 targetY = pacman.row;
             }
             if(pacman.current_direction == PacmanObject.Direction.R) {
-                targetX = pacman.col-4;
+                targetX = pacman.col+4;
                 targetY = pacman.row;
             }
             if(pacman.current_direction == PacmanObject.Direction.D) {
