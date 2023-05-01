@@ -15,6 +15,7 @@ public class MazeConfigure {
     private Field[][] fields;
     private List<MazeObject> PoleGhostu = new ArrayList<MazeObject>();
     private List<KeyObject> PoleKlicu = new ArrayList<KeyObject>();
+    private List<DoorObject> PoleDveri = new ArrayList<DoorObject>();
     private PacmanObject pacman;
 
     /**
@@ -43,7 +44,7 @@ public class MazeConfigure {
         this.actual_rows++;
         // kontrola korektnosti vstupního řetězce
         if((this.actual_rows > this.rows-2)
-                || (!line.matches("^[X.SGK]+$"))
+                || (!line.matches("^[X.SGKT]+$"))
                 || (line.length() != this.cols-2)
                 || (!this.reading)) {
             this.fail = true;
@@ -90,6 +91,14 @@ public class MazeConfigure {
                 pathField.objectOnField = key;
                 this.fields[this.actual_rows][counter+1] = pathField;
                 PoleKlicu.add(key);
+            }
+            else if (ltr.equals('T')) {
+                PathField pathField = new PathField(this.actual_rows, counter+1);
+                DoorObject door = new DoorObject(this.actual_rows, counter+1);
+                door.field = pathField;
+                pathField.objectOnField = door;
+                this.fields[this.actual_rows][counter+1] = pathField;
+                PoleDveri.add(door);
             }
             else {
                 return false;
@@ -151,6 +160,11 @@ public class MazeConfigure {
             public List<KeyObject> getKeys() {
                 List<KeyObject> cloned_list
                         = new ArrayList<KeyObject>(PoleKlicu);
+                return cloned_list;
+            }
+            public List<DoorObject> getDoors() {
+                List<DoorObject> cloned_list
+                        = new ArrayList<DoorObject>(PoleDveri);
                 return cloned_list;
             }
         };

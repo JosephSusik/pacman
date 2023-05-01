@@ -1,6 +1,7 @@
 package com.example.pacman.common;
 
 
+import com.example.pacman.game.DoorObject;
 import com.example.pacman.game.KeyObject;
 import com.example.pacman.game.PacmanObject;
 
@@ -14,4 +15,5 @@ public interface Maze {
     public PacmanObject getPacman();
     public List<MazeObject> getGhosts();
     public List<KeyObject> getKeys();
+    public List<DoorObject> getDoors();
 }

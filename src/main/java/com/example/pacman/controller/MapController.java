@@ -21,6 +21,8 @@ public class MapController extends Group {
 
     private List<KeyObject> PoleKlicu;
 
+    private List<DoorObject> PoleDveri;
+
     private PacmanObject pacman;
 
     private double CellSize = 30.0;
@@ -32,6 +34,8 @@ public class MapController extends Group {
     private Image pacmanLeftImage;
     private Image pacmanGhostImage;
     private Image keyImage;
+    private Image doorOpenImage;
+    private Image doorClosedImage;
     private MazeObject ghost;
     private MazeObject ghost1;
 
@@ -41,7 +45,7 @@ public class MapController extends Group {
         this.pacman = maze.getPacman();
         this.PoleGhostu = maze.getGhosts();
         this.PoleKlicu = maze.getKeys();
-        System.out.println(this.PoleGhostu);
+        this.PoleDveri = maze.getDoors();
         this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
         this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
         this.pacmanDownImage =  new Image(getClass().getResourceAsStream("gif/pacman-down.gif"));
@@ -49,6 +53,8 @@ public class MapController extends Group {
         this.pacmanLeftImage =  new Image(getClass().getResourceAsStream("gif/pacman-left.gif"));
         this.pacmanGhostImage =  new Image(getClass().getResourceAsStream("gif/ghost-yellow.gif"));
         this.keyImage = new Image(getClass().getResourceAsStream("image/key22.png"));
+        this.doorClosedImage  = new Image(getClass().getResourceAsStream("image/door-closed2.png"));
+        this.doorOpenImage  = new Image(getClass().getResourceAsStream("image/door-open2.png"));
     }
 
     public void initializeGrid() {
@@ -90,10 +96,37 @@ public class MapController extends Group {
                     }
                 } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof KeyObject){
                     this.cellViews[row][col].setImage(keyImage);
+                } else if (cell instanceof PathField && !cell.isEmpty() && cell.get() instanceof DoorObject){
+                    if (((DoorObject) cell.get()).open == true) {
+                        this.cellViews[row][col].setImage(doorOpenImage);
+                    } else if (((DoorObject) cell.get()).open == false) {
+                        this.cellViews[row][col].setImage(doorClosedImage);
+                    }
                 }
                 else if (cell instanceof PathField && cell.isEmpty()) {
                     this.cellViews[row][col].setImage(null);
                 }
+            }
+        }
+    }
+
+    public void process_keys() {
+        boolean open = true;
+        for (KeyObject key : PoleKlicu) {
+            if (pacman.getField() == key.getField()) {
+                key.used = true;
+            }
+            if (key.used == false) {
+                open = false;
+                break;
+            }
+        }
+        for (DoorObject door : PoleDveri) {
+            if (open == true) {
+                door.open = true;
+            }
+            if (pacman.getField() != door.getField()) {
+                door.getField().put(door);
             }
         }
     }
@@ -107,13 +140,17 @@ public class MapController extends Group {
             if (pacman.current_direction == pacman.next_direction) {
                 if (pacman.canMove(ndir)) {
                     pacman.move(ndir);
+                    process_keys();
+
                 }
             } else if (pacman.current_direction != pacman.next_direction) {
                 if (pacman.canMove(ndir)) {
                     pacman.current_direction = pacman.next_direction;
                     pacman.move(ndir);
+                    process_keys();
                 } else if (pacman.canMove(cdir)) {
                     pacman.move(cdir);
+                    process_keys();
                 }
             }
         }
@@ -205,6 +242,9 @@ public class MapController extends Group {
         }
         for(MazeObject ghost : PoleGhostu) {
             ghost.reset();
+        }
+        for(DoorObject door : PoleDveri) {
+            door.reset();
         }
     }
 
