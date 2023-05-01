@@ -15,6 +15,7 @@ public class PacmanObject implements MazeObject {
     public PathField field;
     public int lives;
     public int steps;
+    public boolean won;
 
     /**
      * Konstruktor
@@ -29,6 +30,7 @@ public class PacmanObject implements MazeObject {
         this.current_direction = Direction.NONE;
         this.lives = 3;
         this.steps = 0;
+        this.won = false;
     }
     /**
      * Funkce pro zjištění, zda se může pacman přemístit na políčko
@@ -66,6 +68,7 @@ public class PacmanObject implements MazeObject {
         this.current_direction = Direction.NONE;
         this.next_direction = Direction.NONE;
         this.steps = 0;
+        this.won = false;
     }
 
     public Field getField() {
