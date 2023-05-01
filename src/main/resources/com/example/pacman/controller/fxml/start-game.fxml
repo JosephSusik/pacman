@@ -15,7 +15,7 @@
         <Label fx:id="label" style="-fx-text-fill: white"/>
 
         <Button text="Start game" fx:id="btn_startGame"/>
-        <Label fx:id="start_label"/>
+        <Label fx:id="start_label" style="-fx-text-fill: white"/>
 
         <Button text="Back" fx:id="btn_back"/>
 </VBox>

@@ -32,14 +32,14 @@ public class HelloController implements Initializable {
         btn_startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Utils.changeScene(actionEvent, "fxml/start-game.fxml", "Start Game!");
+                Utils.changeScene(actionEvent, "fxml/start-game.fxml", "Start Game");
             }
         });
 
         btn_replayGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Utils.changeScene(actionEvent, "replay-game.fxml", "Replay mode!");
+                Utils.changeScene(actionEvent, "fxml/replay-game.fxml", "Replay Mode");
             }
         });
 
