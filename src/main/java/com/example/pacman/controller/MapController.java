@@ -176,7 +176,7 @@ public class MapController extends Group {
                 tmpKey.getField().put(tmpKey);
             }
         }
-        
+
         //GHOSTI
         //Jeden ghost
         if(PoleGhostu.size() == 1) {
