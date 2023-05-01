@@ -126,6 +126,10 @@ public class MapController extends Group {
             }
         }
         for(MazeObject ghost : PoleGhostu) {
+            /*
+            PoleGhostu.get(0)
+            poslední - PoleGhostu.get(PoleGhostu.size()-1)
+            */
 
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
@@ -139,7 +143,6 @@ public class MapController extends Group {
 
             //Ghost 1
             ghost.move(move_ghost(ghostX, ghostY, pacX, pacY, ghost));
-
             /* Ghost 2 - Pinky
             if(pacman.current_direction == PacmanObject.Direction.L) {
                 targetX = pacman.col-4;
