@@ -82,6 +82,9 @@ public class MazeConfigure {
                 ghost.field = pathField;
                 pathField.objectOnField = ghost;
                 this.fields[this.actual_rows][counter+1] = pathField;
+                if (PoleGhostu.size() == 3) {
+                    return false;
+                }
                 PoleGhostu.add(ghost);
             }
             else if (ltr.equals('K')) {
@@ -125,6 +128,10 @@ public class MazeConfigure {
             this.fields[counter][0] = lwallField;
             WallField rwallField = new WallField(counter, this.cols-1);
             this.fields[counter][this.cols-1] = rwallField;
+        }
+        if (this.PoleGhostu.size() == 0) {
+            this.fail = true;
+            return false;
         }
         return true;
     }
