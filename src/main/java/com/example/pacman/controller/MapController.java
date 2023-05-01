@@ -162,6 +162,7 @@ public class MapController extends Group {
                 tmpKey.getField().put(tmpKey);
             }
         }
+        /*
         for(MazeObject ghost : PoleGhostu) {
             /*
             první - PoleGhostu.get(0)
@@ -169,13 +170,162 @@ public class MapController extends Group {
             MazeObject gh2 = PoleGhostu.get(1);
 
             poslední - PoleGhostu.get(PoleGhostu.size()-1)
-            */
+
 
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
                 restart = true;
             }
-            //Ghost move
+          */
+        //GHOSTI
+        //Jeden ghost
+        if(PoleGhostu.size() == 1) {
+            int ghostX = PoleGhostu.get(0).ghostX();
+            int ghostY = PoleGhostu.get(0).ghostY();
+            int pacY = pacman.row;
+            int pacX = pacman.col;
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            PoleGhostu.get(0).move(move_ghost(ghostX, ghostY, pacX, pacY, PoleGhostu.get(0)));
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+        }
+        //Dva ghosti
+        if(PoleGhostu.size() == 2) {
+            int ghostX = PoleGhostu.get(0).ghostX();
+            int ghostY = PoleGhostu.get(0).ghostY();
+            int pacY = pacman.row;
+            int pacX = pacman.col;
+
+            int targetX = 0;
+            int targetY = 0;
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            PoleGhostu.get(0).move(move_ghost(ghostX, ghostY, pacX, pacY, PoleGhostu.get(0)));
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            if(pacman.current_direction == PacmanObject.Direction.L) {
+                targetX = pacman.col-4;
+                targetY = pacman.row;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.R) {
+                targetX = pacman.col+4;
+                targetY = pacman.row;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.D) {
+                targetX = pacman.col;
+                targetY = pacman.row-4;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.U) {
+                targetX = pacman.col-4;
+                targetY = pacman.row+4;
+            }
+
+            if (PoleGhostu.get(1).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            PoleGhostu.get(1).move(move_ghost(PoleGhostu.get(1).ghostX(), PoleGhostu.get(1).ghostY(), targetX, targetY, PoleGhostu.get(1)));
+
+            if (PoleGhostu.get(1).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+        }
+        //Tri ghosti
+        if(PoleGhostu.size() == 3) {
+            int ghostX = PoleGhostu.get(0).ghostX();
+            int ghostY = PoleGhostu.get(0).ghostY();
+            int pacY = pacman.row;
+            int pacX = pacman.col;
+
+            int targetX = 0;
+            int targetY = 0;
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            PoleGhostu.get(0).move(move_ghost(ghostX, ghostY, pacX, pacY, PoleGhostu.get(0)));
+
+            if (PoleGhostu.get(0).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            if(pacman.current_direction == PacmanObject.Direction.L) {
+                targetX = pacman.col-4;
+                targetY = pacman.row;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.R) {
+                targetX = pacman.col+4;
+                targetY = pacman.row;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.D) {
+                targetX = pacman.col;
+                targetY = pacman.row-4;
+            }
+            if(pacman.current_direction == PacmanObject.Direction.U) {
+                targetX = pacman.col-4;
+                targetY = pacman.row+4;
+            }
+
+            if (PoleGhostu.get(1).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            PoleGhostu.get(1).move(move_ghost(PoleGhostu.get(1).ghostX(), PoleGhostu.get(1).ghostY(), targetX, targetY, PoleGhostu.get(1)));
+
+            if (PoleGhostu.get(1).getField() == pac_field) {
+                pacman.lives--;
+                restart = true;
+            }
+
+            int distX = Math.abs(PoleGhostu.get(2).ghostX() - pacX);
+            int distY = Math.abs(PoleGhostu.get(2).ghostY() - pacY);
+            if(distX > 8 || distY > 8) {
+                if (PoleGhostu.get(2).getField() == pac_field) {
+                    pacman.lives--;
+                    restart = true;
+                }
+                PoleGhostu.get(2).move(move_ghost(PoleGhostu.get(2).ghostX(), PoleGhostu.get(2).ghostY(), pacX, pacY, PoleGhostu.get(2)));
+                if (PoleGhostu.get(2).getField() == pac_field) {
+                    pacman.lives--;
+                    restart = true;
+                }
+            } else {
+                if (PoleGhostu.get(2).getField() == pac_field) {
+                    pacman.lives--;
+                    restart = true;
+                }
+                PoleGhostu.get(2).move(move_ghost(PoleGhostu.get(2).ghostX(), PoleGhostu.get(2).ghostY(), 0, 0, PoleGhostu.get(2)));
+                if (PoleGhostu.get(2).getField() == pac_field) {
+                    pacman.lives--;
+                    restart = true;
+                }
+            }
+        }
+        //Ghost move
+        /*
             int ghostX = ghost.ghostX();
             int ghostY = ghost.ghostY();
             int pacY = pacman.row;
@@ -201,7 +351,7 @@ public class MapController extends Group {
                 targetY = pacman.row+4;
             }
             ghost.move(move_ghost(ghostX, ghostY, targetX, targetY, ghost));
-            */
+
 
             /* Ghost 3 - Clyde
             //Distance from pacman
@@ -212,14 +362,16 @@ public class MapController extends Group {
             } else {
                 ghost.move(move_ghost(ghostX, ghostY, 0, 0, ghost));
             }
-            */
+
 
             if (ghost.getField() == pac_field) {
                 pacman.lives--;
                 restart = true;
             }
+
+         */
             //ghost.move(Field.Direction.R);
-        }
+        //}
 
         if (restart) {
             restart_maze();
