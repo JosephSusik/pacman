@@ -3,10 +3,7 @@ package com.example.pacman.controller;
 import com.example.pacman.common.Field;
 import com.example.pacman.common.Maze;
 import com.example.pacman.common.MazeObject;
-import com.example.pacman.game.GhostObject;
-import com.example.pacman.game.PacmanObject;
-import com.example.pacman.game.PathField;
-import com.example.pacman.game.WallField;
+import com.example.pacman.game.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
@@ -19,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -52,13 +50,96 @@ public class GameController implements EventHandler<KeyEvent> {
 
     private List<String> panelMessages = new ArrayList<>();
 
+    private String logFile;
+
+    private Maze maze;
+
+    public void createFile(){
+        try {
+            File myObj = new File(logFile);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFile() {
+        try {
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(logFile, true));
+            for (int x = 0; x < maze.numCols(); x++) {
+                for (int y = 0; y < maze.numRows(); y++) {
+                    Field tmp = maze.getField(x,y);
+                    if (tmp instanceof WallField) {
+                        out.write("X");
+                    } else if (tmp instanceof PathField) {
+                        if (tmp.isEmpty() && ((PathField) tmp).point == true){
+                            out.write(".");
+                        }
+                        else if (tmp.isEmpty() && ((PathField) tmp).point == false) {
+                            out.write(",");
+                        }
+                        else if (((PathField) tmp).get() instanceof GhostObject) {
+                            out.write("G");
+                        }
+                        else if (((PathField) tmp).get() instanceof PacmanObject) {
+                            out.write("P");
+                        }
+                        else if (((PathField) tmp).get() instanceof KeyObject) {
+                            out.write("K");
+                        }
+                        else if (((PathField) tmp).get() instanceof DoorObject && ((DoorObject) ((PathField) tmp).get()).open == true) {
+                            out.write("D");
+                        }
+                        else {
+                            out.write("T");
+                        }
+                    }
+                }
+                out.write("|");
+            }
+            out.write(pacman.lives + "|" + pacman.score + "|" + pacman.steps);
+            out.write("\n");
+            out.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void setupFile() {
+        try {
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(logFile, true));
+            out.write(maze.numRows()+" "+ maze.numCols()+" "+"\n");
+            out.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     public void startGame(Maze maze) throws FileNotFoundException {
 
         pacman = maze.getPacman();
+        this.maze = maze;
+
+        logFile = new SimpleDateFormat("yyyyMMddHHmmSS'.txt'").format(new Date());
+        createFile();
+
 
         mapController.setMaze(maze);
         mapController.initializeGrid();
         mapController.update_map();
+        setupFile();
+        writeFile();
 
         statsController.setStats(maze);
         statsController.initializeGrid();
@@ -130,6 +211,7 @@ public class GameController implements EventHandler<KeyEvent> {
                     statsController.update_stats();
                     score.setText(String.format("Score: %d", pacman.score));
                     steps.setText(String.format("Steps: %d", pacman.steps));
+                    writeFile();
                 });
             }
         };
@@ -163,9 +245,15 @@ public class GameController implements EventHandler<KeyEvent> {
             restartGame();
             pacman.score = 0;
             pacman.steps = 0;
+
             for (PathField path : mapController.PolePolicek) {
                 path.point = true;
             }
+
+            logFile = new SimpleDateFormat("yyyyMMddHHmmSS'.txt'").format(new Date());
+            createFile();
+            setupFile();
+            writeFile();
         } else if (code == KeyCode.P) {
             if (timer == null) {
                 setTimer();
