@@ -1,4 +1,8 @@
 package com.example.pacman.game;
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: MazeConfigure.java
+ */
 
 import java.util.ArrayList;
 import java.util.List;

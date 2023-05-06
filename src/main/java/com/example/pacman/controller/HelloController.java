@@ -1,3 +1,8 @@
+/*
+ * Author: Josef Susík
+ * File: HelloController.java
+ */
+
 package com.example.pacman.controller;
 
 import com.example.pacman.PacmanGame;

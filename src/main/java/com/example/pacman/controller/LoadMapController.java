@@ -1,4 +1,8 @@
 package com.example.pacman.controller;
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: LoadMapController.java
+ */
 
 import com.example.pacman.common.Maze;
 import com.example.pacman.game.MazeConfigure;

@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala
+ * File: ReplayController.java
+ */
+
 package com.example.pacman.controller;
 
 import com.example.pacman.common.Field;

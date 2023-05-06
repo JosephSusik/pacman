@@ -1,4 +1,8 @@
 package com.example.pacman.controller;
+/*
+ * Author: Josef Susík
+ * File: Utils.java
+ */
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

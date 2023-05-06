@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala
+ * File: MapReplayController.java
+ */
+
 package com.example.pacman.controller;
 
 import javafx.scene.Group;

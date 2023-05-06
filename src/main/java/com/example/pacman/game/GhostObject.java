@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: GhostObject.java
+ */
+
 package com.example.pacman.game;
 
 

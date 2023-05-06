@@ -1,3 +1,9 @@
+/*
+* Author: Marek Putala, Josef Susík
+* File: Field.java
+*/
+
+
 package com.example.pacman.common;
 
 public interface Field {

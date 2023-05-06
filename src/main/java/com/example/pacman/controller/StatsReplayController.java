@@ -1,4 +1,8 @@
 package com.example.pacman.controller;
+/*
+ * Author: Marek Putala
+ * File: StatsReplayController.java
+ */
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;

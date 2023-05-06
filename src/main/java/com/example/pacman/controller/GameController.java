@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: GameController.java
+ */
+
 package com.example.pacman.controller;
 
 import com.example.pacman.common.Field;

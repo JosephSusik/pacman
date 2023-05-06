@@ -1,5 +1,9 @@
-package com.example.pacman.game;
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: WallField.java
+ */
 
+package com.example.pacman.game;
 
 import com.example.pacman.common.Field;
 import com.example.pacman.common.Maze;

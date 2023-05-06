@@ -1,4 +1,8 @@
 package com.example.pacman.game;
+/*
+ * Author: Marek Putala
+ * File: KeyObject.java
+ */
 
 import com.example.pacman.common.Field;
 import com.example.pacman.common.MazeObject;

@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: Maze.java
+ */
+
 package com.example.pacman.common;
 
 

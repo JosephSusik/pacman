@@ -1,4 +1,8 @@
 package com.example.pacman.game;
+/*
+ * Author: Marek Putala
+ * File: DoorObject.java
+ */
 
 import com.example.pacman.common.Field;
 import com.example.pacman.common.MazeObject;

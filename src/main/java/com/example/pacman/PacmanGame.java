@@ -1,3 +1,8 @@
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: PacmanGame.java
+ */
+
 package com.example.pacman;
 
 import javafx.application.Application;

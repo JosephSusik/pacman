@@ -1,7 +1,10 @@
+/*
+ * Author: Marek Putala, Josef Susík
+ * File: LoadReplayController.java
+ */
+
 package com.example.pacman.controller;
 
-import com.example.pacman.common.Maze;
-import com.example.pacman.game.MazeConfigure;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
