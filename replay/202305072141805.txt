@@ -1,7 +1,0 @@
-12 12 
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
-XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0

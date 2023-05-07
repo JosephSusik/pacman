@@ -118,7 +118,6 @@ public class GameController implements EventHandler<KeyEvent> {
             out.write(pacman.lives + "|" + pacman.score + "|" + pacman.steps);
             out.write("\n");
             out.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
