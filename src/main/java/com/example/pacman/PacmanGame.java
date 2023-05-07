@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class PacmanGame extends Application {
+    /**
+     * Starts game
+     * @param stage stage to render
+     */
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("controller/fxml/menu-view.fxml"));

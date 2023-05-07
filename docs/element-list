@@ -1,0 +1,5 @@
+module:com.example.pacman
+com.example.pacman
+com.example.pacman.common
+com.example.pacman.controller
+com.example.pacman.game
