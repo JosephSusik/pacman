@@ -16,6 +16,9 @@ public class StatsReplayController extends Group {
 
     private Image pacmanHeartImage;
 
+    /**
+     * Initializes grid
+     */
     public void initializeGrid() {
         this.pacmanHeartImage =  new Image(getClass().getResourceAsStream("image/full-heart-2.png"));
         this.cellViews = new ImageView[1][3];
@@ -32,6 +35,9 @@ public class StatsReplayController extends Group {
         }
     }
 
+    /**
+     * Updates stats
+     */
     public void update_stats(String[] splitMap){
         int lives = Integer.parseInt(splitMap[splitMap.length-3]);
         for (int row = 0; row < 1; row++) {

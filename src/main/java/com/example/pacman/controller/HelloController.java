@@ -32,6 +32,11 @@ public class HelloController implements Initializable {
     @FXML
     private Label pacmanName;
 
+    /**
+     * Initializes main controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn_startGame.setOnAction(new EventHandler<ActionEvent>() {

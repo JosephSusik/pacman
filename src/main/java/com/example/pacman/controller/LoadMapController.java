@@ -46,6 +46,11 @@ public class LoadMapController implements Initializable{
 
     public File selectedFile;
 
+    /**
+     * Initializes map controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

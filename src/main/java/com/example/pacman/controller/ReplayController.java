@@ -43,7 +43,10 @@ public class ReplayController implements EventHandler<KeyEvent> {
 
     private String[] string_parts;
 
-
+    /**
+     * Starts replay
+     * @param content_replay content to replay
+     */
     public void startReplay(String content_replay) {
         String[] parts = content_replay.split("\n");
         this.string_parts = parts;
@@ -62,6 +65,10 @@ public class ReplayController implements EventHandler<KeyEvent> {
         steps.setText(String.format("Steps: " + splitMap[splitMap.length-1]));
     }
 
+    /**
+     * Handles frames change
+     * @param keyEvent captures user input
+     */
     @Override
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();

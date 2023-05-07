@@ -59,6 +59,9 @@ public class GameController implements EventHandler<KeyEvent> {
 
     private Maze maze;
 
+    /**
+     * Creates file for replay
+     */
     public void createFile(){
         try {
             File myObj = new File("replay" + File.separator + logFile);
@@ -73,6 +76,10 @@ public class GameController implements EventHandler<KeyEvent> {
         }
     }
 
+
+    /**
+     * Writes into replay file
+     */
     public void writeFile() {
         try {
             BufferedWriter out = new BufferedWriter(
@@ -118,6 +125,9 @@ public class GameController implements EventHandler<KeyEvent> {
         }
     }
 
+    /**
+     * Sets up replay file
+     */
     public void setupFile() {
         try {
             BufferedWriter out = new BufferedWriter(
@@ -131,6 +141,11 @@ public class GameController implements EventHandler<KeyEvent> {
         }
     }
 
+    /**
+     * Starts game
+     *
+     * @param  maze Maze to play
+     */
     public void startGame(Maze maze) throws FileNotFoundException {
 
         pacman = maze.getPacman();
@@ -161,6 +176,9 @@ public class GameController implements EventHandler<KeyEvent> {
         setTimer();
     }
 
+    /**
+     * Restarts game
+     */
     public void restartGame() {
 
         mapController.restart_maze();
@@ -174,11 +192,16 @@ public class GameController implements EventHandler<KeyEvent> {
         setTimer();
     }
 
+    /**
+     * Rotates label
+     */
     private void rotateLabel() {
         Collections.rotate(panelMessages, 1);
         logMessages.setText(String.format(panelMessages.get(0)));
     }
-
+    /**
+     * Sets timer
+     */
     public void setTimer() {
         this.timer = new Timer();
         if (this.timerMessage == null) {
@@ -223,7 +246,10 @@ public class GameController implements EventHandler<KeyEvent> {
         this.timer.schedule(task, 0, 500);
     }
 
-
+    /**
+     * Pacman and game controll
+     * @param  keyEvent detects keyboard button press
+     */
     @Override
     public void handle(KeyEvent keyEvent) {
         KeyCode code = keyEvent.getCode();

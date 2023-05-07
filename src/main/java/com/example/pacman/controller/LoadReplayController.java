@@ -46,6 +46,11 @@ public class LoadReplayController implements Initializable {
 
     public File selectedFile;
 
+    /**
+     * Initializes replay controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn_selectReplay.setOnAction(new EventHandler<ActionEvent>() {

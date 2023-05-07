@@ -15,7 +15,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Utils {
-
+    /**
+     * Changes scene
+     * @param event event for scene
+     * @param fxmlFile fxml file to load
+     * @param title title to set to scene
+     */
     public static void changeScene(ActionEvent event, String fxmlFile, String title) {
         Parent root = null;
 

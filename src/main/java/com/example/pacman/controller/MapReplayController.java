@@ -26,6 +26,11 @@ public class MapReplayController extends Group {
     private Image doorClosedImage;
     private Image pointImage;
 
+    /**
+     * Initializes grid
+     * @param rows number of rows
+     * @param cols number of cols
+     */
     public void initializeGrid(int rows, int cols) {
         this.wallImage =  new Image(getClass().getResourceAsStream("image/wall.png"));
         this.pacmanUpImage =  new Image(getClass().getResourceAsStream("gif/pacman-up.gif"));
@@ -54,6 +59,10 @@ public class MapReplayController extends Group {
         }
     }
 
+    /**
+     * Updates map
+     * @param splitMap Map to load
+     */
     public void update_map(String[] splitMap){
         for (int row = 0; row < splitMap.length-3; row++) {
             int col = 0;

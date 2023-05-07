@@ -47,7 +47,10 @@ public class MapController extends Group {
     private MazeObject ghost;
     private MazeObject ghost1;
 
-
+    /**
+     * Sets up maze
+     * @param maze maze to setup
+     */
     public void setMaze(Maze maze) {
         this.maze = maze;
         pacman = maze.getPacman();
@@ -67,6 +70,9 @@ public class MapController extends Group {
         this.pointImage  = new Image(getClass().getResourceAsStream("image/point2.png"));
     }
 
+    /**
+     * Initializes grid of the maze
+     */
     public void initializeGrid() {
         if (this.maze.numRows() > 0 && this.maze.numCols() > 0) {
             this.cellViews = new ImageView[this.maze.numRows()][this.maze.numCols()];
@@ -84,6 +90,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Updates map
+     */
     public void update_map(){
         for (int row = 0; row < this.maze.numRows(); row++) {
             for (int col = 0; col < this.maze.numCols(); col++) {
@@ -123,6 +132,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Processes key presses
+     */
     public void process_keys() {
         boolean open = true;
         for (KeyObject key : PoleKlicu) {
@@ -144,6 +156,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Processes points
+     */
     public void process_points() {
         if (pacman.field.point == true) {
             pacman.field.point = false;
@@ -151,6 +166,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Processes objects
+     */
     public void process_objects(){
         boolean restart = false;
         //pohyb pacman
@@ -353,6 +371,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Processes pacman direction
+     */
     public Field.Direction pacmanDirToField(PacmanObject.Direction pdir) {
         if (pdir == PacmanObject.Direction.U){
             return Field.Direction.U;
@@ -365,6 +386,9 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Restarts maze
+     */
     public void restart_maze() {
         pacman.reset();
         for(KeyObject key : PoleKlicu) {
@@ -378,12 +402,22 @@ public class MapController extends Group {
         }
     }
 
+    /**
+     * Sets pacman next direction
+     */
     public void set_next_direction(PacmanObject.Direction dir) {
         pacman.next_direction = dir;
     }
 
-    //currentX, currentY = X,Y coordinates of ghost
-    //targetX, targetY = X,Y coordinates of pacman
+    /**
+     * Moves ghost and tries to find path to target
+     * @param currentX ghosts X position
+     * @param currentY ghosts Y position
+     * @param targetX targets X position
+     * @param targetY targets Y position
+     * @param ghost ghost to move
+     * @return Direction to move
+     */
     public Field.Direction move_ghost(int currentX, int currentY, int targetX, int targetY, MazeObject ghost) {
         int horizonDiff = currentX - targetX;
         int verticalDiff = currentY - targetY;

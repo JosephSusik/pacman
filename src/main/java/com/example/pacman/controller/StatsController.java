@@ -36,7 +36,10 @@ public class StatsController extends Group {
 
     private Image pacmanHeartImage;
 
-
+    /**
+     * Sets up stats
+     * @param maze maze to set up stats for
+     */
     public void setStats(Maze maze) {
         this.maze = maze;
         this.pacman = maze.getPacman();
@@ -45,6 +48,9 @@ public class StatsController extends Group {
         this.pacmanHeartImage =  new Image(getClass().getResourceAsStream("image/full-heart-2.png"));
     }
 
+    /**
+     * Initializes grid
+     */
     public void initializeGrid() {
         this.cellViews = new ImageView[1][pacman.lives];
         for (int row = 0; row < 1; row++) {
@@ -60,10 +66,16 @@ public class StatsController extends Group {
         }
     }
 
+    /**
+     * Resets stats
+     */
     public void reset_stats() {
         pacman.lives = backup_lives;
     }
 
+    /**
+     * Updates stats
+     */
     public void update_stats(){
         for (int row = 0; row < 1; row++) {
             for (int col = 0; col < backup_lives; col++) {
