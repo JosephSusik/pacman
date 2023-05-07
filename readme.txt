@@ -1,0 +1,1 @@
+Dokumentace - mvn compile javadoc:javadoc
