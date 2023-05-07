@@ -16,7 +16,9 @@ public class PathField implements Field {
     public boolean point;
 
     /**
-     * Konstruktor
+     * Constructor
+     * @param row row
+     * @param col col
      */
     public PathField(int row,
                      int col){
@@ -25,14 +27,17 @@ public class PathField implements Field {
         this.point = false;
     }
     /**
-     * Funkce pro přiřazení políčka k bludišti
+     * Set field to maze
+     * @param maze Maze
      */
     public void setMaze(Maze maze) {
         this.maze = maze;
     }
 
     /**
-     * Funkce pro získaní políčka v daném směru od aktuálního
+     * Get field in direction
+     * @param dirs Direction
+     * @return field in direction
      */
     public Field nextField(Field.Direction dirs) {
 
@@ -43,7 +48,9 @@ public class PathField implements Field {
     }
 
     /**
-     * Funkce pro vložení zadaného objektu na políčko
+     * Put object to field
+     * @param object object to put on field
+     * @return true on success
      */
     public boolean put(MazeObject object) {
         this.objectOnField = object;
@@ -51,7 +58,9 @@ public class PathField implements Field {
     }
 
     /**
-     * Funkce pro odstranění objektu z políčka
+     * Remove object from field
+     * @param object object to remove
+     * @return true on success
      */
     public boolean remove(MazeObject object) {
         if(object == this.objectOnField){
@@ -62,8 +71,8 @@ public class PathField implements Field {
     }
 
     /**
-     * Funkce pro zjištění, zda je políčko prázdné
-     * Pokud ano, vrací se true.
+     * is empty?
+     * @return true if empty
      */
     public boolean isEmpty() {
         if (this.objectOnField == null){
@@ -73,22 +82,25 @@ public class PathField implements Field {
     }
 
     /**
-     * Funkce pro získání objektu na daném políčku
+     * Get object
+     * @return maze object
      */
     public MazeObject get() {
         return objectOnField;
     }
 
     /**
-     * Funkce pro získání informace, zda se dá na políčko přemístit.
-     * Vrací true, protože se jedná ho PathField
+     * Can move
+     * @return true
      */
     public boolean canMove() {
         return true;
     }
 
     /**
-     * Funkce pro porovnávání objektů field.
+     * Compare objects
+     * @param obj Object to compare
+     * @return true if same
      */
     public boolean equals(Object obj) {
         if (obj == null) {

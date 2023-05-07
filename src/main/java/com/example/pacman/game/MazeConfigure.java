@@ -29,7 +29,9 @@ public class MazeConfigure {
     public MazeConfigure() {}
 
     /**
-     * Funkce pro zahájení čtení vstupních řetězců. Dále definuje hodnoty třídy.
+     * Start reading
+     * @param rows rows
+     * @param cols  cols
      */
     public void startReading(int rows,int cols){
         // kvůli okrajovým zdím musí být bludiště větěí o jedno v každém směru
@@ -42,8 +44,9 @@ public class MazeConfigure {
     }
 
     /**
-     * Funkce pro kontrolu a zpracování vstupního řetězce. Dále vytváří políčka a vkládá je do pole bludiště.
-     * Případně ještě vytváří objekty (např. Pacman v našem případě)
+     * process line
+     * @param line line of map
+     * @return true on success
      */
     public boolean processLine(String line){
         this.actual_rows++;
@@ -118,7 +121,8 @@ public class MazeConfigure {
     }
 
     /**
-     * Funkce pro ukončení čtení. Stará se také o vytvoření ohraničujících zdí (políček) v poli bludiště
+     * Stop read
+     * @return true success
      */
     public boolean stopReading(){
         this.reading = false;
@@ -144,9 +148,8 @@ public class MazeConfigure {
     }
 
     /**
-     * Funkce pro vytvoření bludiště maze. Kontrola zda nenastala chyba při zpracování vstupních řetězců, či bylo
-     * ukončeno čtení.
-     * Po vytvoření bludiště je ještě potřeba přiřadit vytvořené políčka k našemu bludišti
+     * Create maze
+     * @return returns Maze
      */
     public Maze createMaze(){
         if(this.fail == true) {

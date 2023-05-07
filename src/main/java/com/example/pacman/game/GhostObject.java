@@ -37,6 +37,8 @@ public class GhostObject implements MazeObject {
 
     /**
      * Konstruktor
+     * @param row row
+     * @param col col
      */
     public GhostObject(int row,
                         int col) {
@@ -46,28 +48,55 @@ public class GhostObject implements MazeObject {
         this.ocol = col;
     }
 
+    /**
+     * Return ghost X position
+     * @return Return ghost X position
+     */
     public int ghostX() {
         return col;
     }
+    /**
+     * Return ghost Y position
+     * @return Return ghost Y position
+     */
     public int ghostY() {
         return row;
     }
 
+    /**
+     * Return last direction of ghost
+     * @return Return last direction of ghost
+     */
     public Field.Direction GetLastDir() {
         return lastDir;
     }
 
+    /**
+     * Return current direction of ghost
+     * @return Return current direction of ghost
+     */
     public Field.Direction GetCurrDir() {
         return currDir;
     }
+
+    /**
+     * Set current direction of ghost
+     * @return Set current direction of ghost
+     */
     public void setCurrDir(Field.Direction dir) {
         currDir = dir;
     }
+    /**
+     * Set last direction of ghost
+     * @return Set last direction of ghost
+     */
     public void setLastDir(Field.Direction dir) {
         lastDir = dir;
     }
 
-
+    /**
+     * Reset ghost
+     */
     public void reset() {
         this.field.objectOnField = null;
         this.row = orow;
@@ -79,7 +108,8 @@ public class GhostObject implements MazeObject {
     }
 
     /**
-     * Funkce pro zjištění, zda se může duch přemístit na políčko
+     * Check if ghost can move
+     * @param dir direction to move
      */
     public boolean canMove(Field.Direction dir) {
         int nextcol = dir.getColDelta() + this.col;
@@ -89,7 +119,8 @@ public class GhostObject implements MazeObject {
     }
 
     /**
-     * Funkce se stará o přemístění ducha na políčko
+     * Move ghost
+     * @param dir direction to move
      */
     public boolean move(Field.Direction dir) {
         if(canMove(dir)){
@@ -104,7 +135,10 @@ public class GhostObject implements MazeObject {
         }
         return false;
     }
-
+    /**
+     * Return ghost field
+     * @return return ghost field
+     */
     public Field getField() {
         return field;
     }

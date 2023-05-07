@@ -24,7 +24,9 @@ public class PacmanObject implements MazeObject {
     public boolean won;
 
     /**
-     * Konstruktor
+     * Constructor
+     * @param row row
+     * @param col col
      */
     public PacmanObject(int row,
                         int col) {
@@ -40,7 +42,9 @@ public class PacmanObject implements MazeObject {
         this.score = 0;
     }
     /**
-     * Funkce pro zjištění, zda se může pacman přemístit na políčko
+     * Can move?
+     * @param dir direction
+     * @return true on success
      */
     public boolean canMove(Field.Direction dir) {
         int nextcol = dir.getColDelta() + this.col;
@@ -49,7 +53,8 @@ public class PacmanObject implements MazeObject {
         return this.field.maze.getField(nextrow, nextcol).canMove();
     }
     /**
-     * Funkce se stará o přemístění pacmana na políčko
+     * Move Pacman
+     * @param dir direction to move in
      */
     public boolean move(Field.Direction dir) {
         if(canMove(dir)) {
@@ -65,7 +70,9 @@ public class PacmanObject implements MazeObject {
         }
         return false;
     }
-
+    /**
+     * Reset pacman
+     */
     public void reset() {
         this.field.objectOnField = null;
         this.row = orow;
@@ -77,15 +84,43 @@ public class PacmanObject implements MazeObject {
         this.won = false;
     }
 
+    /**
+     * Gets field
+     * @return false
+     */
     public Field getField() {
         return field;
     }
 
+    /**
+     * not ghost
+     * @return 0
+     */
     public int ghostX() {return 0;}
+    /**
+     * not ghost
+     * @return 0
+     */
     public int ghostY() {return 0;}
+    /**
+     * not ghost
+     * @return null
+     */
     public Field.Direction GetLastDir() {return null;}
+    /**
+     * not ghost
+     * @return null
+     */
     public Field.Direction GetCurrDir() {return null;}
+    /**
+     * not ghost
+     * @param dir direction
+     */
     public void setCurrDir(Field.Direction dir) {}
+    /**
+     * not ghost
+     * @param dir direction
+     */
     public void setLastDir(Field.Direction dir) {}
 
 }
