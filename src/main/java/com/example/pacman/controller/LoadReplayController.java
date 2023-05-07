@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class LoadReplayController implements Initializable {
@@ -54,6 +55,8 @@ public class LoadReplayController implements Initializable {
                 FileChooser.ExtensionFilter extFilter =
                         new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
                 fil_chooser.getExtensionFilters().add(extFilter);
+                String currentPath = Paths.get("./replay/").toAbsolutePath().normalize().toString();
+                fil_chooser.setInitialDirectory(new File(currentPath));
 
                 Node node = (Node) actionEvent.getSource();
                 Stage st = (Stage) node.getScene().getWindow();

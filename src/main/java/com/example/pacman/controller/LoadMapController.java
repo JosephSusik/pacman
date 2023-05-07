@@ -24,6 +24,7 @@ import java.io.IOException;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class LoadMapController implements Initializable{
@@ -57,6 +58,8 @@ public class LoadMapController implements Initializable{
                 FileChooser.ExtensionFilter extFilter =
                         new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
                 fil_chooser.getExtensionFilters().add(extFilter);
+                String currentPath = Paths.get("./data/").toAbsolutePath().normalize().toString();
+                fil_chooser.setInitialDirectory(new File(currentPath));
 
                 Node node = (Node) actionEvent.getSource();
                 Stage st = (Stage) node.getScene().getWindow();
