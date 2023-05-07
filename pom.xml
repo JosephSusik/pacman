@@ -87,6 +87,7 @@
                 <configuration>
                     <mainClass>com.example.pacman.PacmanGame</mainClass>
                     <layout>JAR</layout>
+                    <outputDirectory>${basedir}</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
