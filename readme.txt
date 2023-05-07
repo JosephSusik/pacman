@@ -1,3 +1,3 @@
 Dokumentace - mvn compile javadoc:javadoc
-JAR - mvn clean compile assembly:single
+JAR - mvn package
 Run - mvn clean javafx:run
