@@ -1,0 +1,21 @@
+12 12 
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|XP.........X|XXX...XX...X|XXXXXXXXXXXX|3|0|0
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,P........X|XXX...XX...X|XXXXXXXXXXXX|3|10|1
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|X,,P.......X|XXX...XX...X|XXXXXXXXXXXX|3|20|2
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,,,P......X|XXX...XX...X|XXXXXXXXXXXX|3|30|3
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX...XX...X|X,,,,P.....X|XXX...XX...X|XXXXXXXXXXXX|3|40|4
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,G...X|XXX..X,X...X|X....XXX...X|XXX...XX...X|X,,,,,P....X|XXX...XX...X|XXXXXXXXXXXX|3|50|5
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,.G..X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,,,,,,P...X|XXX...XX...X|XXXXXXXXXXXX|3|60|6
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG..G.X|XXX..X,X...X|X....XXX...X|XXX...XX...X|X,,,,,,,P..X|XXX...XX...X|XXXXXXXXXXXX|3|70|7
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,.G..X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,,,,,,P,..X|XXX...XX...X|XXXXXXXXXXXX|3|70|8
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XGG...X|XXX..X,X...X|X....XXX...X|XXX...XX...X|X,,,,,P,,..X|XXX...XX...X|XXXXXXXXXXXX|3|70|9
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,,,,P,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|70|10
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X....XXX...X|XXX...XX...X|X,,,P,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|70|11
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX..X,X...X|X....XXX...X|XXX.P.XX...X|X,,,,,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|80|12
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....X,....X|XXX..XGX...X|X...PXXX...X|XXX.,.XX...X|X,,,,,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|90|13
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X....XG....X|XXX.PX,X...X|X...,XXX...X|XXX.,.XX...X|X,,,,,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|100|14
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X...PX,....X|XXX.,XGX...X|X...,XXX...X|XXX.,.XX...X|X,,,,,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|110|15
+XXXXXXXXXXXX|X..........X|XXX...XX...X|XX.........X|XXXXXXXX...X|X...PXG....X|XXX.,X,X...X|X...,XXX...X|XXX.,.XX...X|X,,,,,,,,..X|XXX...XX...X|XXXXXXXXXXXX|3|110|15

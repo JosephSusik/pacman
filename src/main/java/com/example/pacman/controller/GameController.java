@@ -61,7 +61,7 @@ public class GameController implements EventHandler<KeyEvent> {
 
     public void createFile(){
         try {
-            File myObj = new File(logFile);
+            File myObj = new File("replay" + File.separator + logFile);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -76,7 +76,7 @@ public class GameController implements EventHandler<KeyEvent> {
     public void writeFile() {
         try {
             BufferedWriter out = new BufferedWriter(
-                    new FileWriter(logFile, true));
+                    new FileWriter("replay"+File.separator+logFile, true));
             for (int x = 0; x < maze.numCols(); x++) {
                 for (int y = 0; y < maze.numRows(); y++) {
                     Field tmp = maze.getField(x,y);
@@ -121,7 +121,7 @@ public class GameController implements EventHandler<KeyEvent> {
     public void setupFile() {
         try {
             BufferedWriter out = new BufferedWriter(
-                    new FileWriter(logFile, true));
+                    new FileWriter("replay"+File.separator+logFile, true));
             out.write(maze.numRows()+" "+ maze.numCols()+" "+"\n");
             out.close();
             System.out.println("Successfully wrote to the file.");
